@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuService } from 'src/app/shared/services/menu.service';
+import { ProduitService } from 'src/app/shared/services/produit.service';
 
 @Component({
   selector: 'mtm-ajouter-menu',
@@ -14,7 +15,8 @@ export class AjouterMenuComponent implements OnInit {
   panelF = false;
   menu: any;
   object: any;
-  constructor(private menuServ: MenuService, private fb: FormBuilder) { }
+  constructor(private menuServ: MenuService, private fb: FormBuilder,
+    private produitServ:ProduitService) { }
 
   ngOnInit(): void {
     this.menuServ.all$().subscribe(data => {
@@ -58,28 +60,7 @@ export class AjouterMenuComponent implements OnInit {
   get menuTailles() { return this.menu.controls['menuTailles'] as FormArray }
   get menuPortionFrites() { return this.menu.controls['menuPortionFrites'] as FormArray }
 
-  submitData() {
-    this.menu.value.menuBurgers.map((burg:any)=>{
-      burg.quantite=burg.quantite,
-      burg.burger={
-        id:Number(burg.burger)
-      }
-    })
-    this.menu.value.menuTailles.map((taille:any)=>{
-      taille.quantite=taille.quantite,
-      taille.taille={
-        id: Number(taille.taille)
-      }
-    })
-    this.menu.value.menuPortionFrites.map((portion:any)=>{
-      portion.quantite=portion.quantite,
-      portion.portionFrite={
-        id: Number(portion.portionFrite)
-      }
-    })
-    console.log(this.menu.value)
-  }
-
+ 
   add(type: string) {
     if(type=='burger'){
        const burgerForm = this.fb.group({
@@ -116,5 +97,31 @@ export class AjouterMenuComponent implements OnInit {
     this.menuPortionFrites.removeAt(index);
    }
   }
+
+  submitData() {
+    this.menu.value.menuBurgers.map((burg:any)=>{
+      burg.quantite=burg.quantite,
+      burg.burger={
+        id:Number(burg.burger)
+      }
+    })
+    this.menu.value.menuTailles.map((taille:any)=>{
+      taille.quantite=taille.quantite,
+      taille.taille={
+        id: Number(taille.taille)
+      }
+    })
+    this.menu.value.menuPortionFrites.map((portion:any)=>{
+      portion.quantite=portion.quantite,
+      portion.portionFrite={
+        id: Number(portion.portionFrite)
+      }
+    })
+    this.menu.value.prix=0
+    this.produitServ.saveMenu(this.menu.value).subscribe(
+      err=>console.log(err)
+    )
+  }
+
 }
 
