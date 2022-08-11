@@ -1,0 +1,26 @@
+.info
+{
+    width: 100%;
+}
+.info-sub
+{
+    width: 60%;
+
+}
+.title
+{
+    width: 100%;
+}
+.title h2
+{
+    font-weight: bold;
+    font-size: 32;
+}
+button
+{
+    background-color: #D4401F;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    height: 5vh;
+}

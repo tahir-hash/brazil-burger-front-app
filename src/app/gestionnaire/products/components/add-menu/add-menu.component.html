@@ -1,0 +1,50 @@
+<ng-container [formGroup]="form"  *ngIf="burgers">
+    <div class="form-group d-flex">
+        <select formControlName="burger" class="border-dark form-control choosen">
+            <option disabled selected value="">Choisir</option>
+            <ng-container *ngFor="let item of burgers">
+                <option value="{{item.id}}">{{item.nom}}</option>
+            </ng-container>
+        </select>
+        <input formControlName="quantite"  placeholder="Definir une quantite"  type="number" class="choosen1 border-dark form-control">
+        <div class="text-right d-flex icons">
+            
+            <i (click)="delete(i)" data-toggle="tooltip"
+            title="Supprimer" style="color: red;" class="bi bi-trash fa-2x"></i>
+          </div>
+    </div>  
+</ng-container>
+
+<ng-container [formGroup]="form" *ngIf="frites">
+    <div class="form-group d-flex">
+        <select formControlName="portionFrite" class="border-dark form-control choosen">
+            <option disabled selected value="">Choisir</option>
+            <ng-container *ngFor="let item of frites">
+                <option value="{{item.id}}">{{item.nom}}</option>
+            </ng-container>
+        </select>
+        <input  placeholder="Definir une quantite" formControlName="quantite" type="number" class="choosen1 border-dark form-control">
+        <div class="text-right d-flex icons">
+            
+            <i (click)="delete(i)" data-toggle="tooltip"
+            title="Supprimer" style="color: red;" class="bi bi-trash fa-2x"></i>
+          </div>
+    </div>    
+</ng-container>
+
+<ng-container [formGroup]="form" *ngIf="tailles">
+    <div class="form-group d-flex">
+        <select formControlName="taille" class="border-dark form-control choosen">
+            <option disabled selected value="">Choisir</option>
+            <ng-container *ngFor="let item of tailles">
+                <option value="{{item.id}}">{{item.libelle}}</option>
+            </ng-container>
+        </select>
+        <input  placeholder="Definir une quantite" formControlName="quantite" type="number" class="choosen1 border-dark form-control">
+        <div class="text-right d-flex icons">
+            
+            <i (click)="delete(i)" data-toggle="tooltip"
+            title="Supprimer" style="color: red;" class="bi bi-trash fa-2x"></i>
+          </div>
+    </div>    
+</ng-container>

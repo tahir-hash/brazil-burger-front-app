@@ -1,0 +1,43 @@
+
+/* counter */
+button {
+    padding: 0;
+    margin: 0;
+    border-style: none;
+    touch-action: manipulation;
+    display: inline-block;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .qty {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .qty label {
+    flex: 1 0 100%;
+  }
+  .qty input {
+    width: 4.375rem;
+    height: 3rem;
+    font-size: 1.3rem;
+    text-align: center;
+    border: 1px solid #D4401F;
+  }
+  .qty button {
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+    font-size: 2rem;
+    background: #D4401F;
+  }
+  .qty button.qtyminus {
+    margin-right: 0.3rem;
+  }
+  .qty button.qtyplus {
+    margin-left: 0.3rem;
+  }
+  

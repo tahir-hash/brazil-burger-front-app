@@ -1,0 +1,35 @@
+.taille
+{
+    width: 100%;
+}
+.boissons
+{
+    width: 80%;
+    overflow-x: scroll;
+    scrollbar-color: #d5ac68 #f1db9d;
+   scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+
+/* custom scrol */
+.boissons::-webkit-scrollbar {
+    height: 2px;
+  }
+  
+  .boissons::-webkit-scrollbar-thumb {
+    height: 5px;
+    background-color: #D4401F;
+  }
+  
+  .boissons::-webkit-scrollbar-thumb:hover {
+    background-color: #f3ac9c;
+  }
+  
+  .boissons::-webkit-scrollbar:vertical {
+    display: none;
+  }
+  mtm-boissons
+  {
+    margin-right: 2%;
+  }

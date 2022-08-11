@@ -1,0 +1,113 @@
+<section class="vh-100" style="background-color: #ffff;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-7">
+                <div class="shadow p-3 mb-5 bg-white rounded card" style="border-radius: 1rem;">
+                   <div class="salut">
+                    <div class="company d-flex justify-content-center mb-4 mt-3">
+                        <img class="rounded-circle" src="assets/images/bb.png" width="100" height="100" alt="">
+                        <h1 class="card-title text-center mt-3 m-lg-3">Brazil burger</h1>
+                    </div>
+                    <h3 class="card-title text-center">Creer votre compte!!!</h3>
+                   </div>
+                    <form  class="mb-5" [formGroup]="register" (ngSubmit)="submitData()" action="">
+                        <div class="line d-flex justify-content-center">
+                            <div class="form-groug">
+                                <label for="">Nom</label>
+                                <input formControlName="nom" type="text" class="form-control">
+                                <ng-container *ngIf="nom.invalid && nom.touched">
+                                    <span *ngIf="nom.errors?.required" style="color: red;">
+                                        Le nom est obligatoire
+                                    </span>
+                                </ng-container>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Prenom</label>
+                                <input formControlName="prenom"  type="text" class="form-control">
+                                <ng-container *ngIf="prenom.invalid && prenom.touched">
+                                    <span *ngIf="prenom.errors?.required" style="color: red;">
+                                        Le prenom est obligatoire
+                                    </span>
+                                </ng-container>
+                            </div>
+                            
+                        </div>
+                        <div class="line d-flex justify-content-center">
+                            <div class="form-groug">
+                                <label for="">Adresse</label>
+                                <input formControlName="adresse"  type="text" class="form-control">
+                                <ng-container *ngIf="adresse.invalid && adresse.touched">
+                                    <span *ngIf="adresse.errors?.required" style="color: red;">
+                                        L'adresse est obligatoire
+                                    </span>
+                                </ng-container>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label for="">Telephone</label>
+                                <input formControlName="telephone" type="tel" class="form-control">
+                                <ng-container *ngIf="telephone.invalid && telephone.touched">
+                                    <span *ngIf="telephone.errors?.required" style="color: red;">
+                                        Le numero de telephone est obligatoire
+                                    </span>
+                                    <span *ngIf="telephone.errors?.maxLength" style="color: red;">
+                                        Le numero de telephone ne doit pas depasser 9 chiffres
+                                    </span>
+                                    <span *ngIf="telephone.errors?.minLength" style="color: red;">
+                                        Le numero de telephone ne doit pas contenir moins de 9 chiffres
+                                    </span>
+                                    <span *ngIf="telephone.errors?.pattern" style="color: red;">
+                                        Le numero de telephone ne doit  contenir que des chiffres
+                                    </span>
+                                </ng-container>
+                            </div>
+                            
+                        </div>
+                        <div class="line d-flex justify-content-center">
+                            <div class="form-groug">
+                                <label for="">Password</label>
+                                <input formControlName="password"  type="password" class="form-control">
+                                <ng-container *ngIf="password.invalid && password.touched">
+                                    <span *ngIf="password.errors?.required" style="color: red;">
+                                        Le mot de passe  est obligatoire
+                                    </span>
+                                </ng-container>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="">Email</label>
+                                <input  formControlName="login" type="email" class="form-control">
+                                <ng-container *ngIf="login.invalid && login.touched">
+                                    <span *ngIf="login.errors?.required" style="color: red;">
+                                        Le login  est obligatoire
+                                    </span>
+                                    <span *ngIf="login.errors?.email" style="color: red;">
+                                        Le login  doit etre un email
+                                    </span>
+                                </ng-container>
+                            </div>
+                           
+                            
+                        </div>
+                        <div class="line d-flex  confirm">
+                            <div class="form-groug">
+                                <label for="">Confirm Password</label>
+                                <input formControlName="passwordC"  type="password" class="form-control">
+                                <ng-container *ngIf="passwordC.invalid && passwordC.touched">
+                                <span *ngIf="passwordC.errors?.required" style="color: red;">
+                                    La confirmation  est obligatoire
+                                </span>
+                            </ng-container>
+                            </div>   
+                            
+                        </div>
+                        <div class="mt-5 mb-4">
+                            <button [disabled]="register.invalid"  class="btn btn-dark btn-lg btn-block submit" type="submit">Sign up</button>
+                            <a routerLink="/securite/login" href="">Se connecter</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

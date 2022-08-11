@@ -1,0 +1,9 @@
+<section>
+    <div class="qty">
+        <button (click)="onKey(qte)" class="qtyminus" aria-hidden="true" (click)="qtyminus(qte)">&minus;</button>
+        <input [(ngModel)]="nombre" type="number" #qte (change)="onKey($event)" (input)="onKey($event)" name="qty" id="qty" min="1" step="1" value="1">
+        <button (click)="onKey(qte)" (click)="qtyplus(qte)" class="qtyplus" aria-hidden="true">&plus;</button>
+    </div>
+    <h4 style="color: red;">{{validCount()}}</h4>
+</section>
+

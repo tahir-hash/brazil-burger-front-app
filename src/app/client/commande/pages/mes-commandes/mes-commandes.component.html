@@ -1,0 +1,69 @@
+<mtm-header></mtm-header>
+<div class="container mt-5">
+  <div class="filter d-flex justify-content-between mb-3">
+    <h4>Filtrer Par</h4>
+    <div class="etat">
+      <select [(ngModel)]="selectedValue.value" #selectedValue class="form-control" id="">
+        <option value="" selected disabled>Choisir</option>
+        <option value="{{enCours}}">{{enCours}}</option>
+        <option value="{{validee}}">{{validee}}</option>
+        <option value="{{annulee}}">{{annulee}}</option>
+      </select>
+      {{selectedValue.value}}
+    </div>
+    <div class="date">
+      <input type="date" class="form-control">
+    </div>
+  </div>
+  <h1 class="card-title">Mes commandes</h1>
+  <table class="table table-striped mb-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Total</th>
+        <th scope="col">Etat</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let one of own | filterCmd:selectedValue.value | paginate: { itemsPerPage: 3, currentPage: page, totalItems: total}">
+        <tr>
+          <td style="color: #d4401f">
+            <strong>{{one.numCmd}}</strong>
+          </td>
+          <td>{{one.dateCmd|date:'dd/mm/yyyy hh:mm'}}</td>
+          <td>{{one.montant}}</td>
+          <td>{{one.etat}}</td>
+          <td>
+            <div class="text-right d-flex icons">
+              <button
+              routerLink="/client/commande/details/1"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Details"
+                class="btn btn-white border-secondary bg-info btn-md mb-2"
+              >
+                <i class="bi bi-info-circle-fill"></i>
+              </button>
+              <button
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Annuler"
+                class="btn btn-white border-secondary bg-danger btn-md mb-2"
+              >
+                <i class="bi bi-cart-x-fill"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+
+  </table>
+  <div class="paginate">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+</div>
+</div>
+<mtm-footer></mtm-footer>

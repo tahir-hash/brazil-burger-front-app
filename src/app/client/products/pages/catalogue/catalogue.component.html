@@ -1,0 +1,27 @@
+<mtm-header></mtm-header>
+<ng-container *ngIf="catalogue==undefined">
+   <mtm-loader></mtm-loader>
+</ng-container>
+<ng-container *ngIf="catalogue!=undefined">
+    <div class="item">
+        <img class="image" src="assets/images/slide.jpg" height="600" width="100%" alt="Find Your">
+        <h1 class="welcome">Bienvenue chez Brazil Burger. <br>
+            Le plaisir de vous donner du goût !</h1>
+    </div>
+    <div class="container mt-5">
+        <div class="icons d-flex justify-content-center mb-5 fixed">
+            <a class="text-black " (click)="onfilterProduct('')"><i class="fa-solid fa-list fa-3x"></i></a>
+            <a class="text-black " (click)="onfilterProduct('burger')"><i class="fa-solid fa-burger fa-3x"></i></a>
+            <a class="text-black"   (click)="onfilterProduct('menu')"> <i class="fa-solid fa-utensils fa-3x"></i></a>
+        </div>
+       <div class="row">
+        <div *ngFor="let cat of catalogue" class="card-all">
+            <mtm-card [catalogue]="cat"></mtm-card>
+        </div>
+       </div>
+    </div>
+    <mtm-footer></mtm-footer>
+    
+    
+    
+</ng-container>

@@ -1,0 +1,12 @@
+<div class="card mb-4 col-3" width="100px">
+    <img class="mx-auto" src="data:image/png;base64,{{catalogue?.image}}" width="279" height="158"/>
+    <div class="card-body">
+        <h2 class="card-title burg">{{catalogue?.nom|uppercase}}</h2>
+        <div class="d-flex justify-content-between">
+            <h4 class="prix">{{catalogue?.prix}}</h4>
+            <a routerLink="/client/products/details/{{catalogue?.id}}/{{catalogue?.type}}"><i data-toggle="tooltip"
+                data-placement="bottom"
+                title="Details du produits" class="fa-solid fa-cart-plus fa-2x cart"></i></a>
+        </div>
+    </div>
+</div>

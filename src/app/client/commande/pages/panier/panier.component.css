@@ -1,0 +1,29 @@
+.icons button
+{
+    margin-left: 3%;
+}
+button
+{
+    background-color: #D4401F;
+    color: white;
+    border-radius: 12px;
+    border: none;
+}
+.nav-link.active
+{
+  background-color: #D4401f;
+}
+.contain-cart
+{
+    width: 90%;
+    height: fit-content;
+}
+.resume
+{
+    height: fit-content;
+}
+.contain
+{
+    grid-template-columns: 3fr 1fr;
+}
+

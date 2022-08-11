@@ -1,0 +1,20 @@
+<ng-container *ngIf="boisson">
+    <div class="main d-flex flex-column align-items-center">
+        <mtm-minus-count (disabled)="validDis($event)"  (quantityChange)="valid($event)" [(quantity)]="qte"></mtm-minus-count>
+        <div class="contain">
+            <img class="rounded-circle mx-auto mt-2 img" src="assets/images/juice/{{boisson.boisson.nom|lowercase}}.png" width="100" height="100" alt="">
+            <h4 class="text-center">{{boisson.boisson.nom}}</h4>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="otherBoisson">
+    <div class="main d-flex flex-column align-items-center">
+        <mtm-minus-count  (quantityChange)="valid($event)" [(quantity)]="qte"></mtm-minus-count>
+        <div class="contain">
+            <img class="rounded-circle mx-auto mt-2 img" src="assets/images/juice/{{otherBoisson.boisson.nom|lowercase}}.png" width="100" height="100" alt="">
+            <h4 class="text-center">{{otherBoisson.boisson.nom}}</h4>
+        </div>
+    </div>
+</ng-container>
+    

@@ -1,0 +1,122 @@
+<mtm-header></mtm-header>
+<ng-container *ngIf="produit == undefined">
+  <mtm-loader></mtm-loader>
+</ng-container>
+<ng-container *ngIf="produit != undefined">
+  <div class="container shadow-lg p-3 mb-5 bg-body rounded mt-3">
+    <ng-container *ngIf="route.snapshot.paramMap.get('type') == 'menu'">
+      <mtm-details-desc
+        (btnQteChange)="recupQte($event)"
+        [commandeMenuBoissonTailles]="commandeMenuBoissonTailles"
+        [details]="produit.menu"
+      ></mtm-details-desc>
+    </ng-container>
+    <ng-container *ngIf="route.snapshot.paramMap.get('type') == 'burger'">
+      <mtm-details-desc
+        (btnQteChange)="recupQte($event)"
+        [details]="produit.burger"
+      ></mtm-details-desc>
+    </ng-container>
+    <ng-container *ngIf="route.snapshot.paramMap.get('type') != 'burger'">
+      <h2 class="text-center fw-bold" style="color: #d4401f">
+        Composition du menu
+      </h2>
+      <div class="composition d-flex p-1">
+        <ng-container *ngFor="let composition of produit?.menu?.menuBurgers">
+          <mtm-composition [composition]="composition"></mtm-composition>
+        </ng-container>
+        <ng-container
+          *ngFor="let composition of produit?.menu.menuPortionFrites"
+        >
+          <mtm-composition [frites]="composition"></mtm-composition>
+        </ng-container>
+      </div>
+      <h2 class="text-center fw-bold mt-5" style="color: #d4401f">
+        Choisir les boissons du menu
+      </h2>
+      <h1 style="color: red;">{{message}}</h1>
+      <div class="choice d-flex mb-4 flex-column p-3">
+        <ng-container *ngFor="let tailles of produit?.menu.menuTailles">
+          <mtm-taille-boissons
+            [btnQte]="btnQte"
+            [tailles]="tailles"
+            (objetBoissonChange)="recupObj($event)"
+            (objetBoissonChange)="recupObjCmd($event)"
+            (nbrChange)="nbr($event)"
+          ></mtm-taille-boissons>
+        </ng-container>
+      </div>
+    </ng-container>
+    <!-- nav tabs -->
+    <h2 class="text-center fw-bold mt-5" style="color: #d4401f">
+      Choisir d'autres complements
+    </h2>
+    <div id="tabs" #tabs>
+      <ul class="nav nav-pills d-flex tab">
+        <li class="nav-item">
+          <button
+            class="nav-link active text-dark"
+            [ngClass]="{ active: activeTab === 'search' }"
+            (click)="search('search')"
+            data-toggle="tab"
+          >
+            Boissons
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link text-dark"
+            [ngClass]="{ active: activeTab === 'result' }"
+            data-toggle="tab"
+            (click)="result('result')"
+          >
+            Portion de frites
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content mt-3">
+        <div
+          class="tab-pane"
+          id="search"
+          [ngClass]="{ active: activeTab === 'search' }"
+        >
+        <!-- <h6  style="color: red;">{{message1}}</h6> -->
+
+          <div class="choice d-flex mb-4 flex-column p-3">
+            <ng-container *ngFor="let otherTaille of produit?.boissons">
+              <mtm-taille-boissons (objetBoissonChange)="recupObj1($event)"
+              (nbrChange)="nbr1($event)" [otherTaille]="otherTaille"></mtm-taille-boissons>
+            </ng-container>
+          </div>
+        </div>
+        <div
+          class="tab-pane"
+          id="results"
+          [ngClass]="{ active: activeTab === 'result' }"
+        >
+          <div class="composition d-flex p-1">
+          
+            <ng-container *ngFor="let otherFrite of produit?.frites">
+              <mtm-minus-count></mtm-minus-count>
+              <div class="comp m-3">
+                <img
+                  class="rounded-circle mx-auto mt-2"
+                  width="100"
+                  height="100"
+                  src="assets/images/frites/{{
+                    otherFrite?.nom | lowercase
+                  }}.png"
+                />
+                <h4 style="color: #d4401f" class="text-center">
+                  {{ otherFrite.nom }}
+                </h4>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mtm-footer></mtm-footer>
+</ng-container>

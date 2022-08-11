@@ -1,0 +1,18 @@
+.form-group
+{
+    margin-left: 4%;
+}
+
+.submit
+{
+    background-color: #D4401F;
+    margin-left: 9%;
+    margin-right: 3%;
+    width: auto;
+    height: 50px;
+    
+}
+.confirm
+{
+    margin-left: 10%;
+}

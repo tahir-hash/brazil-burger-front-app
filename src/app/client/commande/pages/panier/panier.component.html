@@ -1,0 +1,238 @@
+<mtm-header></mtm-header>
+<ng-container *ngIf="items.all.length<1">
+<mtm-empty-cart></mtm-empty-cart>
+</ng-container>
+<ng-container *ngIf="items.all.length>=1">
+  <div class="container">
+    <div>
+      <h3 class="mb-3 mt-5">Mon Panier</h3>
+      <!-- autocomplete -->
+        
+    </div>
+   <div class="contain d-grid ">
+    <div class="contain-cart p-3 col-7 shadow p-3 mb-5 bg-white rounded">
+      <table class="table table-condensed table-responsive">
+        <thead>
+          <tr>
+            <th style="width: 60%">Product</th>
+            <th style="width: 12%">Price</th>
+            <th style="width: 10%">Quantity</th>
+            <th style="width: 10%">Total</th>
+            <th *ngIf="panier==true" style="width: 60%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let product of items.all" >
+             <ng-container *ngIf="product.burger">
+              <tr class="mb-4">
+                
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-md-3 text-left">
+                      <img
+                      src="data:image/png;base64,{{product.burger.image}}"
+                        alt=""
+                        class="img-fluid d-none d-md-block rounded-circle mb-2 shadow"
+                        width="150"
+                        height="150"
+                      />
+                    </div>
+                    <div class="col-md-9 text-left mt-sm-2">
+                      <h4 style="color: #d4401f">{{product.burger.nom}}</h4>
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">{{product.burger.prix}}</td>
+                <td data-th="Quantity">
+                  <input
+                  [disabled]="true"
+                    type="number"
+                    class="form-control form-control-lg text-center"
+                    value="{{product.quantite}}"
+                  />
+                </td>
+                <td data-th="Total">{{product.quantite*product.burger.prix}}</td>
+                <td *ngIf="panier==true" class="actions" data-th="">
+                  <div class="text-right d-flex icons">
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Augmenter la quantite"
+                      class="btn btn-white border-secondary bg-success btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-plus-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Diminuer la quantite"
+                      class="btn btn-white border-secondary bg-warning btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-dash-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      title="Supprimer"
+                      (click)="removeToCart(product.burger)"
+                      class="btn btn-white border-secondary bg-danger btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-x-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Details"
+                      class="btn btn-white border-secondary bg-info btn-md mb-2"
+                    >
+                      <i class="bi bi-info-circle-fill"></i>
+                    </button>
+                  </div>
+                </td>
+                </tr>  
+             </ng-container>
+             <ng-container *ngIf="product.menu">
+              <tr class="mb-4">
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-md-3 text-left">
+                      <img
+                      src="data:image/png;base64,{{product.menu.image}}"
+                        alt=""
+                        class="img-fluid d-none d-md-block rounded-circle mb-2 shadow"
+                        width="150"
+                        height="150"
+                      />
+                    </div>
+                    <div class="col-md-9 text-left mt-sm-2">
+                      <h4 style="color: #d4401f">{{product.menu.nom}}</h4>
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">{{product.menu.prix}}</td>
+                <td data-th="Quantity">
+                  <input
+                  [disabled]="true"
+                    type="number"
+                    class="form-control form-control-lg text-center"
+                    value="{{product.quantite}}"
+                  />
+                </td>
+                <td data-th="Total">{{product.quantite*product.menu.prix}}</td>
+                <td *ngIf="panier==true" class="actions" data-th="">
+                  <div class="text-right d-flex icons">
+                    <button
+                      data-toggle="tooltip"
+                      
+                      title="Augmenter la quantite"
+                      class="btn btn-white border-secondary bg-success btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-plus-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Diminuer la quantite"
+                      class="btn btn-white border-secondary bg-warning btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-dash-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Supprimer"
+                      (click)="removeToCart(product.menu)"
+                      class="btn btn-white border-secondary bg-danger btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-x-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Details"
+                      class="btn btn-white border-secondary bg-info btn-md mb-2"
+                    >
+                      <i class="bi bi-info-circle-fill"></i>
+                    </button>
+                  </div>
+                </td>
+                </tr>  
+             </ng-container>
+          </ng-container>
+         
+          
+        </tbody>
+      </table>
+    </div>
+  
+  <div class="resume shadow p-3 mb-5 bg-white rounded">
+      <h2>Total: <strong style="color:#d4401f;">{{prix}} FCFA</strong></h2>
+      <div id="tabs" #tabs>
+        <ul class="nav nav-pills d-flex tab">
+          <li class="nav-item">
+            <button
+              class="nav-link active text-dark"
+              [ngClass]="{ active: activeTab === 'search' }"
+              (click)="search('search')"
+              data-toggle="tab"
+            >
+              A livrer
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              class="nav-link text-dark"
+              [ngClass]="{ active: activeTab === 'result' }"
+              data-toggle="tab"
+              (click)="result('result')"
+            >
+              Sur place
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content mt-3">
+          <div
+            class="tab-pane"
+            id="search"
+            [ngClass]="{ active: activeTab === 'search' }"
+          >
+            <div class="choice d-flex mb-4 flex-column p-3">
+          
+              <ng-container >
+                <div class="coo mb-1 mt-1">
+                  <div *ngIf="panier==true" class="form-group">
+                   <label for="">Telephone</label>
+                   <input  type="text" class="form-control">
+                  </div>
+                  <div *ngIf="panier==true" class="form-group">
+                   <label for="">Adresse</label>
+                   <input type="text" class="form-control">
+                  </div>
+               </div>
+              </ng-container>
+            </div>
+          </div>
+          <div
+            class="tab-pane"
+            id="results"
+            [ngClass]="{ active: activeTab === 'result' }"
+          >
+            <div class="composition d-flex p-1">
+              <ng-container>
+                <div class="comp m-3">
+                 
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button (click)="validCmd()" *ngIf="panier==true"><h3 class="mb-1 mt-1">Je Valide</h3></button>
+  </div>
+  
+   </div>
+
+</div>
+</ng-container>
+
+<mtm-footer></mtm-footer>

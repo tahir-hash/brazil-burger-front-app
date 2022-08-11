@@ -1,0 +1,16 @@
+<div class="info d-flex">
+    <img class="img-details mx-auto mt-2" src="data:image/png;base64,{{details?.image}}" width="350" height="300"/>
+    <div class="info-sub ">
+        <div class="title mt-5  justify-content-around">
+            <h2  style="color: #D4401F; margin-right: 27%;">{{details?.nom|uppercase}} -> {{details?.prix}} FCFA</h2>
+            <mtm-count (count)="tailleCtr($event)"  (disabled)="Ondisabled($event)"></mtm-count>
+        </div>
+        <div class="describe mt-5 d-flex justify-content-around">
+            
+            <h4>{{details?.description}}</h4>
+            <button routerLink="/client/products/catalogue"  (click)="addToCart(details)"  data-toggle="tooltip" data-placement="bottom" title="Ajouter au panier">
+                <h3 class="mb-1 mt-1">J'achète</h3>
+            </button>
+        </div>
+    </div>
+</div>
