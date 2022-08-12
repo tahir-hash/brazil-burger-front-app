@@ -22,15 +22,10 @@ export class AjouterMenuComponent implements OnInit {
     this.menuServ.all$().subscribe(data => {
       this.object = data
     })
-    /*  this.menu= new FormGroup({
-       "nom": new FormControl(null),
-       "image": new FormControl(null),
-       "description": new FormControl(null),
-       "menumenuBurgers":new FormArray([])
-     }) */
     this.menu = this.fb.group({
       nom: [null,Validators.required],
-      image: [null],
+      imageFile: [null],
+      fileSource: [null],
       description: [null,Validators.required],
       menuBurgers: this.fb.array([
         this.fb.group({
@@ -53,13 +48,15 @@ export class AjouterMenuComponent implements OnInit {
     })
   }
   get nom(){return this.menu.get('nom')}
-  get image(){return this.menu.get('image')}
+  get imageFile(){return this.menu.get('imageFile')}
   get description(){return this.menu.get('description')}
-
+  get prix(){return this.menu.get('prix')}
   get menuBurgers() { return this.menu.controls['menuBurgers'] as FormArray }
   get menuTailles() { return this.menu.controls['menuTailles'] as FormArray }
   get menuPortionFrites() { return this.menu.controls['menuPortionFrites'] as FormArray }
-
+  get f() {
+    return this.menu.controls;
+  }
  
   add(type: string) {
     if(type=='burger'){
@@ -117,10 +114,21 @@ export class AjouterMenuComponent implements OnInit {
         id: Number(portion.portionFrite)
       }
     })
-    this.menu.value.prix=0
+    //this.menu.value.prix=0
+    this.menu.value.imageFile=this.menu.value.fileSource
     this.produitServ.saveMenu(this.menu.value).subscribe(
       err=>console.log(err)
     )
+    console.log();
+  }
+
+  onFileChange(event:any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.menu.patchValue({
+        fileSource: file
+      });
+    }
   }
 
 }

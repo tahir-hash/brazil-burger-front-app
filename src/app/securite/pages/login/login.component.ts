@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.form).subscribe(
       data=>{
         this.token.saveToken(data.token);
-        this.router.navigate(['/client/products/catalogue']);
+        this.router.navigate(['/admin/products/menu']);
         this.toast.success({detail:"Connexion Reussie", summary:"Veuillez faire vos achats",position:"bl", duration:5000})
       },
       err=>{

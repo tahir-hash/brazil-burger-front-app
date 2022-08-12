@@ -12,6 +12,7 @@ export class ProduitService {
   private url:string = "https://tahirbrazilburger.herokuapp.com/api/catalogues";
   private urlDetails:string = "https://tahirbrazilburger.herokuapp.com/api/details_produits";
   private urlMenu:string= "https://tahirbrazilburger.herokuapp.com/api/menus"
+  
 
   constructor(private http:HttpClient, private token:TokenService) { }
   
@@ -33,12 +34,14 @@ export class ProduitService {
     return this.http.get(`${this.urlDetails}/${id}`)
   }
 
+  
   saveMenu(object:any){
     const headersOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token.getToken()}`
       })
     }
+    
     return this.http.post<any>(this.urlMenu, JSON.stringify(object), headersOptions)
   }
 }
