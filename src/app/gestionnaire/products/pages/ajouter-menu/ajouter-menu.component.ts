@@ -119,7 +119,7 @@ export class AjouterMenuComponent implements OnInit {
     this.produitServ.saveMenu(this.menu.value).subscribe(
       err=>console.log(err)
     )
-    console.log();
+    console.log(this.menu.value);
   }
 
   onFileChange(event:any) {
@@ -131,5 +131,6 @@ export class AjouterMenuComponent implements OnInit {
     }
   }
 
+  
 }
 
