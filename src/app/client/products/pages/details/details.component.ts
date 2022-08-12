@@ -25,15 +25,15 @@ export class DetailsComponent implements OnInit {
   qte = 1;
   tab: any[] = []
   commandeMenuBoissonTailles: BoissonTaille[] = []
-
-  constructor(private service: ProduitService, public route: ActivatedRoute, private cart:CartService,private toast: NgToastService) { }
+  disabled_attr: boolean = true;
+  constructor(private service: ProduitService, public route: ActivatedRoute, private cart: CartService, private toast: NgToastService) { }
   ngOnInit(): void {
     /* this.serv.getValue().subscribe(info =>{
       console.log(this.quantite)
      // this.quantite=0
       this.quantite+=info
    }) */
-   
+
 
     let id = this.route.snapshot.paramMap.get('id');
 
@@ -75,10 +75,10 @@ export class DetailsComponent implements OnInit {
           }
         ]
       }
-      let cmd={
-        quantite:nbr,
-        boissonTaille:{
-          id:Number(event.jus.idBoisson)
+      let cmd = {
+        quantite: nbr,
+        boissonTaille: {
+          id: Number(event.jus.idBoisson)
         }
       }
       this.commandeMenuBoissonTailles.push(cmd)
@@ -108,10 +108,10 @@ export class DetailsComponent implements OnInit {
           ]
         }
         //commandeMenuBoissonTailles
-        let cmd={
-          quantite:nbr,
-          boissonTaille:{
-            id:event.jus.idBoisson
+        let cmd = {
+          quantite: nbr,
+          boissonTaille: {
+            id: event.jus.idBoisson
           }
         }
         this.commandeMenuBoissonTailles.push(cmd)
@@ -144,9 +144,9 @@ export class DetailsComponent implements OnInit {
           let FoundB = false
           if (data.boissonTaille.id == event.jus.idBoisson) {
             let cmd = {
-              quantite:nbr,
-              boissonTaille:{
-                id:event.jus.idBoisson
+              quantite: nbr,
+              boissonTaille: {
+                id: event.jus.idBoisson
               }
             }
             data.boissonTaille = cmd.boissonTaille
@@ -159,25 +159,26 @@ export class DetailsComponent implements OnInit {
         })
       }
     }
-   
 
+console.log(this.tab)
     this.ShowError(this.tab)
   }
   ShowError(tab: any[]) {
     tab.forEach(data => {
       let totalNbr = 0
       let tabB: any[] = data.boisson
-      tabB.forEach(boisson => {
+      tabB.forEach((boisson) => {
         totalNbr += boisson.nbr
-        if(boisson.nbr>boisson.stock){
-          this.message='diekhna'
-          //alert('diekhna')
+        if (boisson.nbr > boisson.stock) {
+          this.toast.error({ detail: "Error message", summary: "Stock indisponible", position: 'bl', duration: 5000 })
+          this.disabled_attr = true
         }
-        else if (data.quantite < totalNbr) {
-         this.toast.error({detail:"Error message", summary:"Vous avez dépassé le nombre de boisson", duration:5000})
+        if (data.quantite < totalNbr) {
+          this.toast.error({ detail: "Error message", summary: "Vous avez dépassé le nombre de boisson", position: 'bl', duration: 5000 })
+          this.disabled_attr = true
         }
-        else {
-          this.message = ''
+        if (data.quantite > totalNbr) {
+          this.disabled_attr = true
         }
       })
     })
@@ -261,8 +262,8 @@ export class DetailsComponent implements OnInit {
       let tabB: any[] = data.boisson
       tabB.forEach(boisson => {
         totalNbr += boisson.nbr
-        if(boisson.nbr>boisson.stock){
-          this.message1='diekhna'
+        if (boisson.nbr > boisson.stock) {
+          this.message1 = 'diekhna'
         }
         else {
           this.message1 = ''
@@ -271,8 +272,8 @@ export class DetailsComponent implements OnInit {
     })
   }
 
-  recupObjCmd(event:any){
-   
+  recupObjCmd(event: any) {
+
   }
-  
+
 }

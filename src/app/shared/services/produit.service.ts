@@ -42,7 +42,9 @@ export class ProduitService {
         'Authorization': `Bearer ${this.token.getToken()}`
       })
     }
-    
-    return this.http.post<any>(this.urlMenu, object, headersOptions)
+    return this.http.post<any>(this.urlMenu, object, headersOptions).subscribe(
+      next=>(data:any)=>{console.log(data)},
+      error=>{console.log(error)},
+    )
   }
 }

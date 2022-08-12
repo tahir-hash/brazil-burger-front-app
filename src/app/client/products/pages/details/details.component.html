@@ -6,6 +6,7 @@
   <div class="container shadow-lg p-3 mb-5 bg-body rounded mt-3">
     <ng-container *ngIf="route.snapshot.paramMap.get('type') == 'menu'">
       <mtm-details-desc
+        [disabled_attr]="disabled_attr"
         (btnQteChange)="recupQte($event)"
         [commandeMenuBoissonTailles]="commandeMenuBoissonTailles"
         [details]="produit.menu"

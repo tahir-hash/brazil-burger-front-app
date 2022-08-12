@@ -11,7 +11,7 @@ export class CountComponent implements OnInit {
   @Output() count = new EventEmitter<number>();
   @Output() disabled : EventEmitter<boolean> = new EventEmitter();
 
-  attr_dis=false;
+  disabled_attr=false;
   
   ngOnInit(): void {
   }

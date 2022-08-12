@@ -2,7 +2,7 @@
 <div class="content-wrapper">
    <div class="container mt-5">
     <h1 class="text-center ">Ajouter un menu</h1>
-    <form [formGroup]="menu" (ngSubmit)="submitData()" enctype="multipart/form-data" >
+    <form [formGroup]="menu" (ngSubmit)="submitData()"  enctype="multipart/form-data" >
         <div class="form-group mb-4">
             <label for=""><strong>Nom du menu</strong></label>
             <input formControlName="nom"  type="text" class="border-dark form-control">

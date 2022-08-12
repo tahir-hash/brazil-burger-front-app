@@ -14,11 +14,10 @@ import { Produit } from '../../../../shared/models/produit';
 export class DetailsDescComponent implements OnInit {
 @Input() details:Produit| undefined = undefined;
 @Input() commandeMenuBoissonTailles:BoissonTaille[] = [];
-
+@Input() disabled_attr:boolean = true;
  btnQte=1;
 @Output() btnQteChange = new EventEmitter<number>();
 constructor(private cart:CartService,private toast: NgToastService) { }
-  attr_dis=false;
   cmdMenuBoissonTailles: BoissonTaille[]= []
   ngOnInit(): void {
   }
@@ -27,15 +26,12 @@ constructor(private cart:CartService,private toast: NgToastService) { }
     this.btnQte=event;
     this.btnQteChange.emit(this.btnQte);
   }
-
-  Ondisabled(event:any){
-   this.attr_dis=event;
-  }
-
   ok(){
     alert("ok");
   }
-
+  onDisabled(){
+    
+  }
   addToCart(det:Produit|undefined){    
     if(det?.type=='burger'){
       
