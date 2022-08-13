@@ -1,62 +1,67 @@
 <mtm-header-admin></mtm-header-admin>
-<div class="content-wrapper">
-    <div class="container mt-5">
-		<h1 class="card-title">LISTE DES MENUS</h1>
-			<button type="submit" class="btn btn-c m-3">
-				<a class="badge" routerLink="/admin/products/add-menu">AJOUTER UN MENU</a>
-			</button>
-
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">Image</th>
-					<th scope="col">Nom</th>
-					<th scope="col">Prix</th>
-					<th scope="col"></th>
-				</tr>
-			</thead>
-			<ng-container *ngIf="products">
-				<ng-container *ngFor="let product of products | paginate: { itemsPerPage: 3, currentPage: page, totalItems: total}" >
-					<tr>
-						<td>
-							<img src="data:image/png;base64,{{product?.image}}" width="70" class="rounded-circle" height="70" alt="">
-						</td>
-						<td>
-							{{product?.nom}}
-						</td>
-						<td>
-							{{product?.prix}}
+<ng-container *ngIf="products==undefined">
 	
-						</td>
-						<td>
-							<div class="text-right d-flex icons">
-								<button
-								  data-toggle="tooltip"
-								  data-placement="bottom"
-								  title="Archiver"
-								  class="btn btn-white border-secondary bg-danger btn-md mb-2"
-								>
-								  <i class="bi bi-cart-x-fill"></i>
-								</button>
-								<button
-								  data-toggle="tooltip"
-								  data-placement="bottom"
-								  title="Details"
-								  class="btn btn-white border-secondary bg-info btn-md mb-2"
-								>
-								  <i class="bi bi-info-circle-fill"></i>
-								</button>
-							  </div>
-						</td>
-						
+ </ng-container>
+<ng-container>
+	<div class="content-wrapper">
+		<div class="container mt-5">
+			<h1 class="card-title">LISTE DES MENUS</h1>
+				<button type="submit" class="btn btn-c m-3">
+					<a class="badge" routerLink="/admin/products/add-menu">AJOUTER UN MENU</a>
+				</button>
+	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Image</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Prix</th>
+						<th scope="col"></th>
 					</tr>
-				</ng-container>
-			</ng-container>
-		</table>
-		<div class="paginate">
-			<pagination-controls (pageChange)="page = $event"></pagination-controls>
+				</thead>
+				<ng-container *ngIf="products">
+					<ng-container *ngFor="let product of products | paginate: { itemsPerPage: 3, currentPage: page, totalItems: total}" >
+						<tr>
+							<td>
+								<img src="data:image/png;base64,{{product?.image}}" width="70" class="rounded-circle" height="70" alt="">
+							</td>
+							<td>
+								{{product?.nom}}
+							</td>
+							<td>
+								{{product?.prix}}
 		
+							</td>
+							<td>
+								<div class="text-right d-flex icons">
+									<button
+									  data-toggle="tooltip"
+									  data-placement="bottom"
+									  title="Archiver"
+									  class="btn btn-white border-secondary bg-danger btn-md mb-2"
+									>
+									  <i class="bi bi-cart-x-fill"></i>
+									</button>
+									<button
+									  data-toggle="tooltip"
+									  data-placement="bottom"
+									  title="Details"
+									  class="btn btn-white border-secondary bg-info btn-md mb-2"
+									>
+									  <i class="bi bi-info-circle-fill"></i>
+									</button>
+								  </div>
+							</td>
+							
+						</tr>
+					</ng-container>
+				</ng-container>
+			</table>
+			<div class="paginate">
+				<pagination-controls (pageChange)="page = $event"></pagination-controls>
+			
+			</div>
 		</div>
+	
 	</div>
-
-</div>
+</ng-container>

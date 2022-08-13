@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { MenuService } from 'src/app/shared/services/menu.service';
 import { ProduitService } from 'src/app/shared/services/produit.service';
 
@@ -16,7 +18,9 @@ export class AjouterMenuComponent implements OnInit {
   menu: any;
   object: any;
   constructor(private menuServ: MenuService, private fb: FormBuilder,
-    private produitServ: ProduitService) { }
+    private produitServ: ProduitService,
+    public router: Router,
+     private toast: NgToastService) { }
 
   ngOnInit(): void {
     this.menuServ.all$().subscribe(data => {
@@ -115,17 +119,19 @@ export class AjouterMenuComponent implements OnInit {
         }
     })
 
-    const formData:FormData = new FormData();
-    formData.append('nom',this.menu.get('nom'))
+    let formData:FormData = new FormData();
+    formData.append('nom',this.menu.get('nom').value)
     formData.append('description',this.menu.get('description').value)
-    formData.append('menuBurgers',this.menu.get('menuBurgers').value)
-    formData.append('menuTailles',this.menu.get('menuTailles').value)
-    formData.append('menuPortionFrites',this.menu.get('menuPortionFrites').value)
+    formData.append('menuBurgers',JSON.stringify(this.menu.get('menuBurgers').value))
+    formData.append('menuTailles',JSON.stringify(this.menu.get('menuTailles').value))
+    formData.append('menuPortionFrites',JSON.stringify(this.menu.get('menuPortionFrites').value))
     formData.append('imageFile',this.menu.get('imageFile').value)
-    console.log(this.menu.value)
-    console.log(this.menu.value)
+    formData.append('prix','0')
+    
     this.produitServ.saveMenu(formData)
-
+    this.router.navigate(['/admin/products/menu']);
+    this.toast.success({ detail: "Ajout réussi", summary: "Menu ajouter avec succés!!!", position: 'bl', duration: 5000 })
+    
   }
 
   onFileChange(event: any) {

@@ -38,7 +38,6 @@ export class ProduitService {
   saveMenu(object:any){
     const headersOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${this.token.getToken()}`
       })
     }

@@ -1,6 +1,7 @@
 export interface BoissonTaille {
-    quantite:number
-    boissonTaille:{
-        id:number
+    quantite: number,
+    boissonTaille: {
+        id: number,
+        nom?: string
     }
 }

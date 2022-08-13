@@ -13,7 +13,7 @@
         <h4 class="type" style="color: #D4401F;">{{otherTaille.libelle}}</h4>
         <div class="boissons d-flex mb-5">
             <ng-container *ngFor="let otherBoisson of otherTaille?.boissonTailles">
-                <mtm-boissons  (juiceChanged)="validQte1($event)" (juiceChanged)="valid1(otherBoisson?.id,otherBoisson?.stock,tailles?.taille?.id)" [otherBoisson]="otherBoisson"></mtm-boissons>
+                <mtm-boissons  (juiceChanged)="validQte1($event)" (juiceChanged)="valid1(otherBoisson?.boisson?.nom,otherBoisson?.id,otherTaille.id,otherTaille.libelle,otherTaille.prix)" [otherBoisson]="otherBoisson"></mtm-boissons>
             </ng-container>
         </div>
     </div>

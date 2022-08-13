@@ -31,7 +31,7 @@ export class PanierComponent implements OnInit {
   ngOnInit(): void {
     this.cart.Panier.subscribe(data=>{
       if(data.burgerCommandes && data.menuCommandes && data.boissonTailleCommandes && data.portionFriteCommandes){
-        data.all=[...data.burgerCommandes,...data.menuCommandes]; 
+        data.all=[...data.burgerCommandes,...data.menuCommandes,...data.boissonTailleCommandes]; 
       }
       this.items=data
       this.prix=this.cart.getMontant()
@@ -70,7 +70,7 @@ ok=this.cart.Panier.value
       this.cart.emptyCart(this.cart.Panier);
       this.router.navigate(['/client/products/catalogue']);
       this.toast.success({detail:"Commande Validée", summary:"Votre commande a été validéé avec succès!!!", position:'bl',duration:5000})
-      window.location.reload();
+     // window.location.reload();
     }
     else{
       this.router.navigate(['/securite/login']);

@@ -2,6 +2,7 @@
 <ng-container *ngIf="items.all.length<1">
 <mtm-empty-cart></mtm-empty-cart>
 </ng-container>
+   
 <ng-container *ngIf="items.all.length>=1">
   <div class="container">
     <div>
@@ -23,6 +24,7 @@
         </thead>
         <tbody>
           <ng-container *ngFor="let product of items.all" >
+            <!-- burgers -->
              <ng-container *ngIf="product.burger">
               <tr class="mb-4">
                 
@@ -90,6 +92,7 @@
                 </td>
                 </tr>  
              </ng-container>
+             <!--  -->
              <ng-container *ngIf="product.menu">
               <tr class="mb-4">
                 <td data-th="Product">
@@ -141,6 +144,72 @@
                       data-placement="bottom"
                       title="Supprimer"
                       (click)="removeToCart(product.menu)"
+                      class="btn btn-white border-secondary bg-danger btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-x-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Details"
+                      class="btn btn-white border-secondary bg-info btn-md mb-2"
+                    >
+                      <i class="bi bi-info-circle-fill"></i>
+                    </button>
+                  </div>
+                </td>
+                </tr>  
+             </ng-container>
+             <!-- boissons -->
+             <ng-container *ngIf="product.boissonTaille">
+              <tr class="mb-4">
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-md-3 text-left">
+                      <img
+                      src="assets/images/juice/{{product.boissonTaille.nom|lowercase}}.png" alt=""
+                        class="img-fluid d-none d-md-block rounded-circle mb-2 shadow"
+                        width="150"
+                        height="150"
+                      />
+                    </div>
+                    <div class="col-md-9 text-left mt-sm-2">
+                      <h4 style="color: #d4401f">{{product.boissonTaille.nom}} - {{product.libTaille|lowercase }}</h4>
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">{{product.prixTaille}}</td>
+                <td data-th="Quantity">
+                  <input
+                  [disabled]="true"
+                    type="number"
+                    class="form-control form-control-lg text-center"
+                    value="{{product.quantite}}"
+                  />
+                </td>
+                <td data-th="Total">{{product.quantite*product.prixTaille}}</td>
+                <td *ngIf="panier==true" class="actions" data-th="">
+                  <div class="text-right d-flex icons">
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Augmenter la quantite"
+                      class="btn btn-white border-secondary bg-success btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-plus-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Diminuer la quantite"
+                      class="btn btn-white border-secondary bg-warning btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-dash-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      title="Supprimer"
+                      (click)="removeToCart(product.boissonTaille)"
                       class="btn btn-white border-secondary bg-danger btn-md mb-2"
                     >
                       <i class="bi bi-cart-x-fill"></i>

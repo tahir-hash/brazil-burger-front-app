@@ -2,5 +2,11 @@ import { BoissonTaille } from "./boisson-taille"
 
 export interface BoissonTailleCommande {
     quantite: number
-    boissonTaille:BoissonTaille
+    idTaille?: number,
+    libTaille?: string,
+    prixTaille?: number
+    boissonTaille:{
+        id: number,
+        nom?: string
+    }
 }

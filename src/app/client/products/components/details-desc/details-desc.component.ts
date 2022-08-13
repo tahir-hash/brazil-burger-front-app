@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { BoissonTaille } from 'src/app/shared/models/boisson-taille';
+import { BoissonTailleCommande } from 'src/app/shared/models/boisson-taille-commande';
 import { BurgerCommande } from 'src/app/shared/models/burger-commande';
 import { MenuCommande } from 'src/app/shared/models/menu-commande';
 import { CartService } from 'src/app/shared/services/cart.service';
@@ -14,7 +15,8 @@ import { Produit } from '../../../../shared/models/produit';
 export class DetailsDescComponent implements OnInit {
 @Input() details:Produit| undefined = undefined;
 @Input() commandeMenuBoissonTailles:BoissonTaille[] = [];
-@Input() disabled_attr:boolean = true;
+@Input() disabled_attr:boolean = false;
+@Input() tab1:BoissonTailleCommande[]=[]
  btnQte=1;
 @Output() btnQteChange = new EventEmitter<number>();
 constructor(private cart:CartService,private toast: NgToastService) { }
@@ -58,6 +60,9 @@ constructor(private cart:CartService,private toast: NgToastService) { }
       this.cart.addMenu(obj)
       this.toast.success({detail:"Ajout reussi", summary:"Vous avez ajouté le produit avec succès",position:"bl", duration:5000})
     }
+   this.cart.addBoissonTaille(this.tab1)
+
+   console.log(this.tab1)
     console.log(this.cart.Panier.value)
   }
 

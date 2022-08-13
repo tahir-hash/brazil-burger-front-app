@@ -16,6 +16,7 @@
       <mtm-details-desc
         (btnQteChange)="recupQte($event)"
         [details]="produit.burger"
+        [tab1]="tab1"
       ></mtm-details-desc>
     </ng-container>
     <ng-container *ngIf="route.snapshot.paramMap.get('type') != 'burger'">

@@ -29,12 +29,12 @@ export class TailleBoissonsComponent implements OnInit {
     this.quantity = event
   this.nbrChange.emit(this.quantity);
   }
-  valid(idBoisson: any,stock:any, idTaille: any, quantite: number) {
+  valid(id: any,stock:any, idTaille: any, quantite: number) {
     let object = {
       idTaille: idTaille,
       quantite: quantite,
       jus: {
-        idBoisson: idBoisson,
+        id: id,
         nbr: this.quantity,
         stock: stock
       }
@@ -49,14 +49,16 @@ export class TailleBoissonsComponent implements OnInit {
     this.quantity = event
   this.nbrChange.emit(this.quantity);
   }
-  valid1(idBoisson: any,stock:any, idTaille: any) {
+  valid1(nom:any,id: any, idTaille: any, libTaille: any,prixTaille:any) {
     let object = {
-      idTaille: idTaille,
-      jus: {
-        idBoisson: idBoisson,
-        nbr: this.quantity,
-        stock: stock
-      }
+      idTaille:idTaille,
+      libTaille:libTaille,
+      prixTaille:prixTaille,
+      boissonTaille:{
+        id:id,
+        nom:nom,
+      },
+      quantite:this.quantity
     }
     //alert(object.idTaille)
     this.objetBoissonChange.emit(object)

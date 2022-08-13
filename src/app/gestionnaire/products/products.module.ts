@@ -23,8 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductsRoutingModule,
     LayoutModule,
     NgxPaginationModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    LayoutModule
   ]
 })
 export class ProductsModule { }

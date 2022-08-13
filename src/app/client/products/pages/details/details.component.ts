@@ -24,8 +24,9 @@ export class DetailsComponent implements OnInit {
   message1: string = '';
   qte = 1;
   tab: any[] = []
+  tab1: any[] = []
   commandeMenuBoissonTailles: BoissonTaille[] = []
-  disabled_attr: boolean = true;
+  disabled_attr: boolean = false;
   constructor(private service: ProduitService, public route: ActivatedRoute, private cart: CartService, private toast: NgToastService) { }
   ngOnInit(): void {
     /* this.serv.getValue().subscribe(info =>{
@@ -69,7 +70,7 @@ export class DetailsComponent implements OnInit {
         quantite: event.quantite,
         boisson: [
           {
-            idBoisson: event.jus.idBoisson,
+            id: event.jus.id,
             nbr: nbr,
             stock: event.jus.stock,
           }
@@ -78,7 +79,7 @@ export class DetailsComponent implements OnInit {
       let cmd = {
         quantite: nbr,
         boissonTaille: {
-          id: Number(event.jus.idBoisson)
+          id: Number(event.jus.id)
         }
       }
       this.commandeMenuBoissonTailles.push(cmd)
@@ -92,7 +93,7 @@ export class DetailsComponent implements OnInit {
         }
       })
       this.commandeMenuBoissonTailles.map(data => {
-        if (data.boissonTaille.id == event.jus.idBoisson) {
+        if (data.boissonTaille?.id == event.jus.id) {
           isFound = true;
         }
       })
@@ -102,7 +103,7 @@ export class DetailsComponent implements OnInit {
           quantite: event.quantite,
           boisson: [
             {
-              idBoisson: event.jus.idBoisson,
+              id: event.jus.id,
               nbr: nbr
             }
           ]
@@ -111,7 +112,7 @@ export class DetailsComponent implements OnInit {
         let cmd = {
           quantite: nbr,
           boissonTaille: {
-            id: event.jus.idBoisson
+            id: event.jus.id
           }
         }
         this.commandeMenuBoissonTailles.push(cmd)
@@ -121,7 +122,7 @@ export class DetailsComponent implements OnInit {
         this.tab.map(data => {
           if (data.idTaille == event.idTaille) {
             let ObjB = {
-              idBoisson: event.jus.idBoisson,
+              id: event.jus.id,
               nbr: nbr,
               stock: event.jus.stock,
 
@@ -129,7 +130,7 @@ export class DetailsComponent implements OnInit {
             let tabB: any[] = data.boisson
             let FoundB = false
             tabB.map((juice, i) => {
-              if (juice.idBoisson == event.jus.idBoisson) {
+              if (juice.id == event.jus.id) {
                 FoundB = true
                 data.boisson[i] = ObjB
               }
@@ -142,11 +143,11 @@ export class DetailsComponent implements OnInit {
         })
         this.commandeMenuBoissonTailles.map(data => {
           let FoundB = false
-          if (data.boissonTaille.id == event.jus.idBoisson) {
+          if (data.boissonTaille?.id == event.jus.id) {
             let cmd = {
               quantite: nbr,
               boissonTaille: {
-                id: event.jus.idBoisson
+                id: event.jus.id
               }
             }
             data.boissonTaille = cmd.boissonTaille
@@ -160,7 +161,7 @@ export class DetailsComponent implements OnInit {
       }
     }
 
-console.log(this.tab)
+    console.log(this.tab)
     this.ShowError(this.tab)
   }
   ShowError(tab: any[]) {
@@ -171,15 +172,16 @@ console.log(this.tab)
         totalNbr += boisson.nbr
         if (boisson.nbr > boisson.stock) {
           this.toast.error({ detail: "Error message", summary: "Stock indisponible", position: 'bl', duration: 5000 })
-          this.disabled_attr = true
+          //this.disabled_attr = true
         }
         if (data.quantite < totalNbr) {
           this.toast.error({ detail: "Error message", summary: "Vous avez dépassé le nombre de boisson", position: 'bl', duration: 5000 })
-          this.disabled_attr = true
+          // this.disabled_attr = true
         }
         if (data.quantite > totalNbr) {
-          this.disabled_attr = true
+          // this.disabled_attr = true
         }
+
       })
     })
   }
@@ -193,65 +195,49 @@ console.log(this.tab)
 
   recupObj1(event: any) {
     var nbr = this.quantity
-    if (this.tab.length == 0) {
+    if (this.tab1.length == 0) {
       let object = {
-        idTaille: event.idTaille,
-        boisson: [
-          {
-            idBoisson: event.jus.idBoisson,
-            nbr: nbr,
-            stock: event.jus.stock,
-          }
-        ]
+        idTaille:event.idTaille,
+        libTaille:event.libTaille,
+        prixTaille:event.prixTaille,
+        boissonTaille:{
+          id:event.boissonTaille.id,
+          nom:event.boissonTaille.nom,
+        },
+        quantite:nbr
       }
-      this.tab.push(object);
+      this.tab1.push(object);
     }
     else {
       var isFound = false;
-      this.tab.map(data => {
-        if (data.idTaille == event.idTaille) {
+      this.tab1.map(data => {
+        if (data.boissonTaille.id == event.boissonTaille.id) {
           isFound = true;
         }
       })
       if (isFound == false) {
         let object = {
           idTaille: event.idTaille,
-          boisson: [
-            {
-              idBoisson: event.jus.idBoisson,
-              nbr: nbr
-            }
-          ]
+          libTaille:event.libTaille,
+          prixTaille:event.prixTaille,
+          boissonTaille:{
+            id:event.boissonTaille.id,
+            nom:event.boissonTaille.nom,
+          },
+          quantite: nbr
         }
 
-        this.tab.push(object);
+        this.tab1.push(object);
       }
       else {
-        this.tab.map(data => {
-          if (data.idTaille == event.idTaille) {
-            let ObjB = {
-              idBoisson: event.jus.idBoisson,
-              nbr: nbr,
-              stock: event.jus.stock,
-
-            }
-            let tabB: any[] = data.boisson
-            let FoundB = false
-            tabB.map((juice, i) => {
-              if (juice.idBoisson == event.jus.idBoisson) {
-                FoundB = true
-                data.boisson[i] = ObjB
-              }
-            })
-            if (FoundB == false) {
-              tabB.push(ObjB)
-            }
+        this.tab1.map((data,index) => {
+          if (data.boissonTaille.id == event.boissonTaille.id) {
+            data.quantite = nbr
           }
-
         })
       }
     }
-    console.log()
+    console.log(this.tab1)
     //----------------------------------VALIDATION-------------------------------------
 
     this.ShowError1(this.tab)
