@@ -8,7 +8,6 @@
     <div>
       <h3 class="mb-3 mt-5">Mon Panier</h3>
       <!-- autocomplete -->
-        
     </div>
    <div class="contain d-grid ">
     <div class="contain-cart p-3 col-7 shadow p-3 mb-5 bg-white rounded">
@@ -92,7 +91,7 @@
                 </td>
                 </tr>  
              </ng-container>
-             <!--  -->
+             <!-- menus -->
              <ng-container *ngIf="product.menu">
               <tr class="mb-4">
                 <td data-th="Product">
@@ -210,6 +209,72 @@
                       data-toggle="tooltip"
                       title="Supprimer"
                       (click)="removeToCart(product.boissonTaille)"
+                      class="btn btn-white border-secondary bg-danger btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-x-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Details"
+                      class="btn btn-white border-secondary bg-info btn-md mb-2"
+                    >
+                      <i class="bi bi-info-circle-fill"></i>
+                    </button>
+                  </div>
+                </td>
+                </tr>  
+             </ng-container>
+             <!-- frites -->
+             <ng-container *ngIf="product.portionFrite">
+              <tr class="mb-4">
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-md-3 text-left">
+                      <img
+                      src="assets/images/frites/{{product.nom|lowercase}}.png" alt=""
+                        class="img-fluid d-none d-md-block rounded-circle mb-2 shadow"
+                        width="150"
+                        height="150"
+                      />
+                    </div>
+                    <div class="col-md-9 text-left mt-sm-2">
+                      <h4 style="color: #d4401f">{{product.nom}}</h4>
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">{{product.prix}}</td>
+                <td data-th="Quantity">
+                  <input
+                  [disabled]="true"
+                    type="number"
+                    class="form-control form-control-lg text-center"
+                    value="{{product.quantite}}"
+                  />
+                </td>
+                <td data-th="Total">{{product.quantite*product.prix}}</td>
+                <td *ngIf="panier==true" class="actions" data-th="">
+                  <div class="text-right d-flex icons">
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Augmenter la quantite"
+                      class="btn btn-white border-secondary bg-success btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-plus-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Diminuer la quantite"
+                      class="btn btn-white border-secondary bg-warning btn-md mb-2"
+                    >
+                      <i class="bi bi-cart-dash-fill"></i>
+                    </button>
+                    <button
+                      data-toggle="tooltip"
+                      title="Supprimer"
+                      (click)="removeToCart(product.portionFrite)"
                       class="btn btn-white border-secondary bg-danger btn-md mb-2"
                     >
                       <i class="bi bi-cart-x-fill"></i>

@@ -10,6 +10,8 @@
         (btnQteChange)="recupQte($event)"
         [commandeMenuBoissonTailles]="commandeMenuBoissonTailles"
         [details]="produit.menu"
+        [tab1]="tab1"
+        [tabFries]="tabFries"
       ></mtm-details-desc>
     </ng-container>
     <ng-container *ngIf="route.snapshot.paramMap.get('type') == 'burger'">
@@ -17,6 +19,7 @@
         (btnQteChange)="recupQte($event)"
         [details]="produit.burger"
         [tab1]="tab1"
+        [tabFries]="tabFries"
       ></mtm-details-desc>
     </ng-container>
     <ng-container *ngIf="route.snapshot.paramMap.get('type') != 'burger'">
@@ -99,7 +102,7 @@
           <div class="composition d-flex p-1">
           
             <ng-container *ngFor="let otherFrite of produit?.frites">
-              <mtm-minus-count></mtm-minus-count>
+              <mtm-minus-count (quantityChange)="friesObj($event,otherFrite?.id,otherFrite?.nom,otherFrite?.prix)"></mtm-minus-count>
               <div class="comp m-3">
                 <img
                   class="rounded-circle mx-auto mt-2"

@@ -1,8 +1,10 @@
 <mtm-header-admin></mtm-header-admin>
 <ng-container *ngIf="products==undefined">
-	
+	<div class="content-wrapper">
+		<mtm-loader-admin></mtm-loader-admin>
+	</div>
  </ng-container>
-<ng-container>
+<ng-container *ngIf="products!=undefined">
 	<div class="content-wrapper">
 		<div class="container mt-5">
 			<h1 class="card-title">LISTE DES MENUS</h1>

@@ -141,7 +141,6 @@ export class AjouterMenuComponent implements OnInit {
        imageFile: file
       });
       this.menu.get('imageFile').updateValueAndValidity();
-
     }
   }
 

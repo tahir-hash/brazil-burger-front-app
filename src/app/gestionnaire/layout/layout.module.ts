@@ -14,7 +14,8 @@ import { LoaderAdminComponent } from './loader-admin/loader-admin.component';
     CommonModule
   ],
   exports: [
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    LoaderAdminComponent
   ]
 })
 export class LayoutModule { }

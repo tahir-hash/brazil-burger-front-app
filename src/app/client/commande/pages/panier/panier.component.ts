@@ -31,7 +31,7 @@ export class PanierComponent implements OnInit {
   ngOnInit(): void {
     this.cart.Panier.subscribe(data=>{
       if(data.burgerCommandes && data.menuCommandes && data.boissonTailleCommandes && data.portionFriteCommandes){
-        data.all=[...data.burgerCommandes,...data.menuCommandes,...data.boissonTailleCommandes]; 
+        data.all=[...data.burgerCommandes,...data.menuCommandes,...data.boissonTailleCommandes,...data.portionFriteCommandes]; 
       }
       this.items=data
       this.prix=this.cart.getMontant()

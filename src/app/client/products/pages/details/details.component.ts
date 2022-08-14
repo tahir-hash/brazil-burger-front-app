@@ -25,6 +25,7 @@ export class DetailsComponent implements OnInit {
   qte = 1;
   tab: any[] = []
   tab1: any[] = []
+  tabFries: any[] = []
   commandeMenuBoissonTailles: BoissonTaille[] = []
   disabled_attr: boolean = false;
   constructor(private service: ProduitService, public route: ActivatedRoute, private cart: CartService, private toast: NgToastService) { }
@@ -262,4 +263,45 @@ export class DetailsComponent implements OnInit {
 
   }
 
+  friesObj(event: any,id:number,nom:string,prix:number){
+    if(this.tabFries.length==0){
+      let obj={
+        quantite:event,
+        nom:nom,
+        prix:prix,
+        portionFrite:{
+          id:id
+        }
+      }
+      this.tabFries.push(obj);
+    }
+    else{
+      let isFound = false;
+      this.tabFries.map(data => {
+        if (data.portionFrite.id == id) {
+          isFound = true;
+        }
+      })
+      if(isFound == false){
+        let obj={
+          quantite:event,
+          nom:nom,
+          prix:prix,
+          portionFrite:{
+            id:id
+          }
+        }
+        this.tabFries.push(obj);  
+      }
+      else{
+        this.tabFries.map(data=>{
+          console.log(data);
+          if(data.portionFrite.id==id){
+            data.quantite=event;
+          }
+        })
+      }
+    }
+    console.log(this.tabFries)
+  }
 }

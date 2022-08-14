@@ -4,6 +4,7 @@ import { BoissonTailleCommande } from '../models/boisson-taille-commande';
 import { BurgerCommande } from '../models/burger-commande';
 import { Cart } from '../models/cart';
 import { MenuCommande } from '../models/menu-commande';
+import { PortionFriteCommande } from '../models/portion-frite-commande';
 import { Produit } from '../models/produit';
 
 @Injectable({
@@ -145,6 +146,48 @@ export class CartService {
 
   }
 
+  addfrites(tab: PortionFriteCommande[]) {
+    let found = false
+    this.Panier.value.portionFriteCommandes?.map(data => {
+      tab.map(data1 => {
+        if (data.portionFrite.id == data1.portionFrite.id) {
+          data.quantite = Number(data.quantite)
+          data.quantite += Number(data1.quantite)   
+          found = true
+        }
+      })
+      return data
+    })
+    ////////////////////////
+    if (!found) {
+      tab.map(data=>{
+        localStorage.setItem('cart', JSON.stringify({
+          ...this.Panier.value,
+          portionFriteCommandes: this.Panier.value.portionFriteCommandes?.concat(data)
+        }));
+        this.Panier.next(
+          {
+            ...this.Panier.value,
+            portionFriteCommandes: this.Panier.value.portionFriteCommandes?.concat(data)
+          }
+        )
+      })
+
+    }
+    else {
+      localStorage.setItem('cart', JSON.stringify({
+        ...this.Panier.value,
+        portionFriteCommandes: this.Panier.value.portionFriteCommandes 
+      }));
+       return this.Panier.next(
+        {
+          ...this.Panier.value,
+          portionFriteCommandes: this.Panier.value.portionFriteCommandes
+        }
+      )
+    }
+
+  }
   remove(object: any) {
     if (object.type == 'burger') {
       this.Panier.value.burgerCommandes?.map((data, i) => {
@@ -176,6 +219,36 @@ export class CartService {
         menuCommandes: this.Panier.value.menuCommandes
       })
     }
+    if(object.boissonTaille){
+      this.Panier.value.boissonTailleCommandes?.map((data, i) => {
+        if (data.boissonTaille.id == object?.id) {
+          this.Panier.value.boissonTailleCommandes?.splice(i, 1)
+        }
+      })
+      localStorage.setItem('cart', JSON.stringify({
+        ...this.Panier.value,
+        boissonTailleCommandes: this.Panier.value.boissonTailleCommandes
+      }));
+      return this.Panier.next({
+        ...this.Panier.value,
+        boissonTailleCommandes: this.Panier.value.boissonTailleCommandes
+      })
+    }
+    if(object.portionFrite){
+      this.Panier.value.portionFriteCommandes?.map((data, i) => {
+        if (data.portionFrite.id == object?.id) {
+          this.Panier.value.portionFriteCommandes?.splice(i, 1)
+        }
+      })
+      localStorage.setItem('cart', JSON.stringify({
+        ...this.Panier.value,
+        portionFriteCommandes: this.Panier.value.portionFriteCommandes
+      }));
+      return this.Panier.next({
+        ...this.Panier.value,
+        portionFriteCommandes: this.Panier.value.portionFriteCommandes
+      })
+    }
     return this.Panier.next
   }
 
@@ -195,6 +268,11 @@ export class CartService {
     this.Panier.value.boissonTailleCommandes?.map(data => {
       if (data.prixTaille) {
         total += data.prixTaille * data.quantite;
+      }
+    })
+    this.Panier.value.portionFriteCommandes?.map(data => {
+      if (data.prix) {
+        total += data.prix * data.quantite;
       }
     })
     return total;
