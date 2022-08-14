@@ -8,6 +8,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
 import { CommandeService } from 'src/app/shared/services/commande.service';
 import { QuartiersService } from 'src/app/shared/services/quartiers.service';
 import { TokenService } from 'src/app/shared/services/token.service';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'mtm-panier',
@@ -44,7 +45,6 @@ export class PanierComponent implements OnInit {
   removeToCart(obj:any) {
     this.cart.remove(obj);
   }
-
 
   //nav tabs
   activeTab: string = 'search';

@@ -4,6 +4,8 @@ import { NgToastService } from 'ng-angular-popup';
 import { Login } from 'src/app/shared/models/Auth';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { TokenService } from 'src/app/shared/services/token.service';
+import jwt_decode from "jwt-decode";
+import { Role } from 'src/app/shared/models/Role';
 
 @Component({
   selector: 'mtm-login',
@@ -12,25 +14,31 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class LoginComponent implements OnInit {
 
-  form:Login={
-    login:'',
-    password:'',
+  form: Login = {
+    login: '',
+    password: '',
   }
-  constructor(private auth:AuthService,private router: Router, private  toast: NgToastService
-    ,private token:TokenService) { }
+  constructor(private auth: AuthService, private router: Router, private toast: NgToastService
+    , private token: TokenService) { }
 
   ngOnInit(): void {
   }
-  
-  onSubmit(){
+
+  onSubmit() {
     this.auth.login(this.form).subscribe(
-      data=>{
+      data => {
         this.token.saveToken(data.token);
-        this.router.navigate(['/admin/products/menu']);
-        this.toast.success({detail:"Connexion Reussie", summary:"Veuillez faire vos achats",position:"bl", duration:5000})
+        let jwt_decoded: any = jwt_decode(this.token.getToken())
+        if(jwt_decoded.roles[0]==Role.admin){
+          this.router.navigate(['/admin/products/menu']);
+        }
+        if(jwt_decoded.roles[0]==Role.client){
+          this.router.navigate(['/client/products/catalogue']);
+        }
+        this.toast.success({ detail: "Connexion Reussie", summary: "Veuillez faire vos achats", position: "bl", duration: 5000 })
       },
-      err=>{
-        this.toast.error({detail:"Failed", summary:"Erreur de connexion", duration:5000})
+      err => {
+        this.toast.error({ detail: "Failed", summary: "Erreur de connexion", duration: 5000 })
 
       }
     )

@@ -27,6 +27,7 @@
     "bootstrap": "^5.2.0",
     "bootstrap-icons": "^1.9.1",
     "json-server": "^0.17.0",
+    "jwt-decode": "^3.1.2",
     "ng-angular-popup": "^0.1.2",
     "ngx-pagination": "^6.0.2",
     "ngx-toastr": "^15.0.0",

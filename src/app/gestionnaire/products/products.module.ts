@@ -9,6 +9,8 @@ import { LayoutModule } from '../layout/layout.module';
 import { AddMenuComponent } from './components/add-menu/add-menu.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from 'src/app/shared/services/token-interceptor.service';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxPaginationModule,
     ReactiveFormsModule,
     LayoutModule
+  ],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
   ]
 })
 export class ProductsModule { }

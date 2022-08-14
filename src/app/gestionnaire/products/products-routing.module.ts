@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/AuthGuard/AuthGuard';
+import { Role } from 'src/app/shared/models/Role';
 import { AjouterMenuComponent } from './pages/ajouter-menu/ajouter-menu.component';
 import { ListeMenuComponent } from './pages/liste-menu/liste-menu.component';
 import { ProductsComponent } from './products.component';

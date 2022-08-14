@@ -7,7 +7,7 @@
   <nav class="dashboard-nav-list">
     <a href="#" class="dashboard-nav-item "
       ><i class="fas fa-tachometer-alt"></i> Dashboard </a
-    ><a routerLink="/admin/products/menu" class="dashboard-nav-item"
+    ><a routerLink="/admin/products/menu"  class="dashboard-nav-item"
       ><i class="fa-solid fa-utensils"></i> Gestions Menus
     </a>
     <a href="#" class="dashboard-nav-item"
@@ -22,8 +22,8 @@
     <a href="#" class="dashboard-nav-item"
     ><i class="fa-solid fa-truck"></i> Gestions Commandes
   </a>
-    <div class="nav-item-divider"></div>
-    <a href="#" class="dashboard-nav-item"
+    <div  class="nav-item-divider"></div>
+    <a (click)="logout()" class="dashboard-nav-item"
       ><i class="fas fa-sign-out-alt"></i> Logout
     </a>
   </nav>

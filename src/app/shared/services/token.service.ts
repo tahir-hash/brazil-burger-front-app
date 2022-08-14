@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Token } from '../models/Auth';
 
 @Injectable({
@@ -6,10 +7,10 @@ import { Token } from '../models/Auth';
 })
 export class TokenService {
 
-  constructor() { }
+  constructor(private router:Router) { }
   connect:boolean=false
 
-  getToken(){
+  getToken():any{
     return localStorage.getItem('token');
   }
 
@@ -20,13 +21,16 @@ export class TokenService {
   isConnect():boolean{
     const token :any = this.getToken()
     if (token != null) {
-      this.connect = true
+      return this.connect = true
     }
     return this.connect
   }
 
   logOut(){
     localStorage.clear()
+    this.router.navigate(['/client/products/catalogue']);
     window.location.reload()
   }
+
+  
 }

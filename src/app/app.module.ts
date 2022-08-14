@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenService } from './shared/services/token.service';
 import { CommandeService } from './shared/services/commande.service';
+import { TokenInterceptorService } from './shared/services/token-interceptor.service';
+import { AuthGuard } from './AuthGuard/AuthGuard';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { CommandeService } from './shared/services/commande.service';
     NgToastModule,
     FormsModule,
     ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
