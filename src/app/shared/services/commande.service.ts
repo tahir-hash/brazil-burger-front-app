@@ -10,8 +10,9 @@ import { TokenService } from './token.service';
 })
 export class CommandeService {
 
+   idClient= Number(localStorage.getItem('userId'));
   private urlCmd = "https://tahirbrazilburger.herokuapp.com/api/commandes";
-  private urlCmdOwn = "https://tahirbrazilburger.herokuapp.com/api/clients/4/commandes";
+  private urlCmdOwn = `https://tahirbrazilburger.herokuapp.com/api/clients/${this.idClient}/commandes`;
   constructor(private toast: NgToastService, private http: HttpClient, private token: TokenService) { }
 
 

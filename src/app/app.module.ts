@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
-import { TokenService } from './shared/services/token.service';
-import { CommandeService } from './shared/services/commande.service';
-import { TokenInterceptorService } from './shared/services/token-interceptor.service';
 import { AuthGuard } from './AuthGuard/AuthGuard';
 
 @NgModule({
@@ -27,7 +23,7 @@ import { AuthGuard } from './AuthGuard/AuthGuard';
     HttpClientModule,
     BrowserAnimationsModule,
     NgToastModule,
-    FormsModule,
+    FormsModule
     ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

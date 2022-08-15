@@ -5,6 +5,8 @@ import { ClientRoutingModule } from './client-routing.module';
 import { ClientComponent } from './client.component';
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '../layout/layout.module';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { LayoutModule } from '../layout/layout.module';
   imports: [
     CommonModule,
     ClientRoutingModule,
-    RouterModule
+    RouterModule,
+    
   ],
   exports: [
     LayoutModule

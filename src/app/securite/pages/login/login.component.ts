@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.form).subscribe(
       data => {
         this.token.saveToken(data.token);
+        localStorage.setItem('userId', data.id)
         let jwt_decoded: any = jwt_decode(this.token.getToken())
+        //console.log(jwt_decoded)
         if(jwt_decoded.roles[0]==Role.admin){
           this.router.navigate(['/admin/products/menu']);
         }
@@ -38,8 +40,8 @@ export class LoginComponent implements OnInit {
         this.toast.success({ detail: "Connexion Reussie", summary: "Veuillez faire vos achats", position: "bl", duration: 5000 })
       },
       err => {
+        console.log(err);
         this.toast.error({ detail: "Failed", summary: "Erreur de connexion", duration: 5000 })
-
       }
     )
   }

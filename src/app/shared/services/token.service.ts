@@ -14,7 +14,7 @@ export class TokenService {
     return localStorage.getItem('token');
   }
 
-  saveToken(token:string){
+  saveToken(token:any){
     localStorage.setItem('token', token)
   }
 
@@ -28,8 +28,8 @@ export class TokenService {
 
   logOut(){
     localStorage.clear()
-    this.router.navigate(['/client/products/catalogue']);
     window.location.reload()
+    this.router.navigate(['/client/products/catalogue']);
   }
 
   

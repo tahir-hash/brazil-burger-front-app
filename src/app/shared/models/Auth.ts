@@ -5,5 +5,6 @@ export interface Login {
 }
 
 export interface Token {
-   token:string
+   token:string,
+   id:any
 }

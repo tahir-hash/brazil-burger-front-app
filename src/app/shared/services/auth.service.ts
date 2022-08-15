@@ -11,7 +11,6 @@ import { TokenService } from './token.service';
 export class AuthService {
   private urlLogin='https://tahirbrazilburger.herokuapp.com/api/login_check'
   private urlRegister='https://tahirbrazilburger.herokuapp.com/api/register'
-  user!: User
 
   
 
@@ -22,7 +21,7 @@ export class AuthService {
   
 
   login(form:Login){
-    return this.http.post<Token>(this.urlLogin, form)
+    return this.http.post<any>(this.urlLogin, form)
   }
 
   signIn(form:Login){

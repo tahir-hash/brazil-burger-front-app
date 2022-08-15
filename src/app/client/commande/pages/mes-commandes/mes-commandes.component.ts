@@ -19,6 +19,7 @@ export class MesCommandesComponent implements OnInit {
   total:any
   constructor(private commandeServ:CommandeService) { }
   selectedValue:string=''  
+  selectDate:string=''
   ngOnInit(): void {
     this.commandeServ.getOwnCommande().subscribe(
       data=> {
@@ -26,6 +27,8 @@ export class MesCommandesComponent implements OnInit {
         console.log(this.own)
       }
     )
-    this.total=this.own.length
+    if(this.own){
+      this.total=this.own.length
+    }
   }
 }

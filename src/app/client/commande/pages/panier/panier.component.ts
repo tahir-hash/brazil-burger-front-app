@@ -8,7 +8,6 @@ import { CartService } from 'src/app/shared/services/cart.service';
 import { CommandeService } from 'src/app/shared/services/commande.service';
 import { QuartiersService } from 'src/app/shared/services/quartiers.service';
 import { TokenService } from 'src/app/shared/services/token.service';
-import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'mtm-panier',

@@ -2,12 +2,12 @@
 <ng-container *ngIf="items.all.length<1">
 <mtm-empty-cart></mtm-empty-cart>
 </ng-container>
-   
+
+
 <ng-container *ngIf="items.all.length>=1">
   <div class="container">
     <div>
       <h3 class="mb-3 mt-5">Mon Panier</h3>
-      <!-- autocomplete -->
     </div>
    <div class="contain d-grid ">
     <div class="contain-cart p-3 col-7 shadow p-3 mb-5 bg-white rounded">
@@ -337,9 +337,14 @@
                    <label for="">Telephone</label>
                    <input  type="text" class="form-control">
                   </div>
-                  <div *ngIf="panier==true" class="form-group">
-                   <label for="">Adresse</label>
-                   <input type="text" class="form-control">
+                  <div *ngIf="panier==true" class="form-group mt-2">
+                  
+                    <select  class="form-control choosen">
+                      <option disabled selected value="">Choisir un quartier</option>
+                      <ng-container *ngFor="let quartier of qrt">
+                          <option value="{{quartier.zone.id}}">{{quartier.libelle}}</option>
+                      </ng-container>
+                  </select>
                   </div>
                </div>
               </ng-container>
