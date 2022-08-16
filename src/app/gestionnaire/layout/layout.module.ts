@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { LoaderAdminComponent } from './loader-admin/loader-admin.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,7 +12,8 @@ import { LoaderAdminComponent } from './loader-admin/loader-admin.component';
     LoaderAdminComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     HeaderAdminComponent,

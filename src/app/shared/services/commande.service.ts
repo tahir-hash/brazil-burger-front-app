@@ -13,6 +13,9 @@ export class CommandeService {
    idClient= Number(localStorage.getItem('userId'));
   private urlCmd = "https://tahirbrazilburger.herokuapp.com/api/commandes";
   private urlCmdOwn = `https://tahirbrazilburger.herokuapp.com/api/clients/${this.idClient}/commandes`;
+  private urlLIvreurs = "https://tahirbrazilburger.herokuapp.com/api/livreurs";
+
+
   constructor(private toast: NgToastService, private http: HttpClient, private token: TokenService) { }
 
 
@@ -50,6 +53,32 @@ export class CommandeService {
     }
     console.log(headersOptions)
     return this.http.get<any>(this.urlCmd, headersOptions).pipe(
+      map(data=>{
+        return data['hydra:member']
+      })
+    )
+  }
+
+  getAllZone(id:any) {
+   let urlZoneCmd = `https://tahirbrazilburger.herokuapp.com/api/zones/${id}/commandes`;
+    const headersOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token.getToken()}`
+      })
+    }
+    console.log(headersOptions)
+    return this.http.get<any>(this.urlCmd, headersOptions).pipe(
+      map(data=>{
+        return data['hydra:member'].filter((zone:any)=>{
+            return zone.etat=="TERMINEE"
+        })
+      })
+    )
+  }
+
+  getAllLiv() {
+    return this.http.get<any>(this.urlLIvreurs).pipe(
       map(data=>{
         return data['hydra:member']
       })

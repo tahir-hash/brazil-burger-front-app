@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterCmdPipe } from 'src/app/Pipe/filter-cmd.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterDatePipe } from 'src/app/Pipe/filter-date.pipe';
+import { DeliveryComponent } from './pages/delivery/delivery.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FilterDatePipe } from 'src/app/Pipe/filter-date.pipe';
     OrderComponent,
     OrderListComponent,
     FilterCmdPipe,
-    FilterDatePipe
+    FilterDatePipe,
+    DeliveryComponent
   ],
   imports: [
     CommonModule,

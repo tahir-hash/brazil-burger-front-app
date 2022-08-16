@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     }
      if (!this.token.isConnect() || route.data['role'] != jwt_decoded.roles[0]) {
       this.router.navigate(["/securite/login"])
-      this.toast.error({ detail: "401 Unauthorized", summary: "Accès refusé ", duration: 5000 })
+      //this.toast.error({ detail: "401 Unauthorized", summary: "Accès refusé ", duration: 5000 })
       return false
     }
     return true;

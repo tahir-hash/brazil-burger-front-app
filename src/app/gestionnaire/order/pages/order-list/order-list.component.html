@@ -3,7 +3,6 @@
   <ng-container *ngIf="allCmd.length==0"  >
     <mtm-loader-admin></mtm-loader-admin>
 </ng-container>
-  {{ allCmd | json }}
   <ng-container *ngIf="allCmd.length!=0">
     <div class="container mt-5">
       <div class="filter d-flex justify-content-between mb-3">
@@ -53,18 +52,33 @@
                   <button
                     data-toggle="tooltip"
                     data-placement="bottom"
-                    title="Details"
-                    class="btn btn-white border-secondary bg-info btn-md mb-2"
+                    title="Augmenter la quantite"
+                    class="btn btn-white border-secondary bg-success btn-md mb-2"
                   >
-                    <i class="bi bi-info-circle-fill"></i>
+                    <i class="bi bi-cart-plus-fill"></i>
                   </button>
                   <button
                     data-toggle="tooltip"
                     data-placement="bottom"
-                    title="Annuler"
+                    title="Diminuer la quantite"
+                    class="btn btn-white border-secondary bg-warning btn-md mb-2"
+                  >
+                    <i class="bi bi-cart-dash-fill"></i>
+                  </button>
+                  <button
+                    data-toggle="tooltip"
+                    title="Supprimer"
                     class="btn btn-white border-secondary bg-danger btn-md mb-2"
                   >
                     <i class="bi bi-cart-x-fill"></i>
+                  </button>
+                  <button
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Details"
+                    class="btn btn-white border-secondary bg-info btn-md mb-2"
+                  >
+                    <i class="bi bi-info-circle-fill"></i>
                   </button>
                 </div>
               </td>
