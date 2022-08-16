@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { NgToastService } from 'ng-angular-popup';
 import { Observable } from 'rxjs';
 import { OwnCmd } from 'src/app/shared/models/OwnCmd';
 import { CommandeService } from 'src/app/shared/services/commande.service';
@@ -17,7 +18,7 @@ export class MesCommandesComponent implements OnInit {
   own:any[]=[]
   page:number=1
   total:any
-  constructor(private commandeServ:CommandeService) { }
+  constructor(private commandeServ:CommandeService,private toast:NgToastService) { }
   selectedValue:string=''  
   selectDate:string=''
   ngOnInit(): void {
@@ -30,5 +31,15 @@ export class MesCommandesComponent implements OnInit {
     if(this.own){
       this.total=this.own.length
     }
+  }
+
+  changeState(etat:any,id:number){
+
+    this.commandeServ.stateChange(etat,id).subscribe(err=>{
+      console.log(err)
+      location.reload()
+    });
+    this.toast.info({ detail: "Update", summary: "Modification reussie", position:'tl', duration: 5000 })
+    //location.reload()
   }
 }

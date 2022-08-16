@@ -46,4 +46,14 @@ export class ProduitService {
       error=>{console.log(error)},
     )
   }
+
+  productsArchived(id:number){
+    const headersOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token.getToken()}`
+      })
+    }
+    return this.http.delete<any>(`${this.urlMenu}/${id}`, headersOptions)
+  }
 }

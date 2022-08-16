@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
 import { CommandeService } from 'src/app/shared/services/commande.service';
 
 @Component({
@@ -8,13 +9,14 @@ import { CommandeService } from 'src/app/shared/services/commande.service';
 })
 export class OrderListComponent implements OnInit {
 
-  constructor(private commandeServ: CommandeService) { }
+  constructor(private commandeServ: CommandeService,private toast:NgToastService) { }
   selectDate: any = ''
   selectedValue: any = ''
   selectedZone: any = ''
   enCours = "EN COURS"
   validee = "VALIDEE"
   annulee = "ANNULEE"
+  terminee = "TERMINEE"
   allCmd: any[] = []
   zones: any[] = []
   page: number = 1
@@ -32,6 +34,16 @@ export class OrderListComponent implements OnInit {
     this.commandeServ.getAllZone().subscribe(data=>{
       this.zones=data
     })
+  }
+
+  changeState(etat:any,id:number){
+
+    this.commandeServ.stateChange(etat,id).subscribe(err=>{
+      console.log(err)
+      location.reload()
+    });
+    this.toast.info({ detail: "Update", summary: "Modification reussie", position:'tl', duration: 5000 })
+    //location.reload()
   }
 
 }

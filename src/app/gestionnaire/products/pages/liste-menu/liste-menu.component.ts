@@ -13,6 +13,7 @@ export class ListeMenuComponent implements OnInit {
   products: Produit[] | undefined = undefined;
   page:number=1
   total:any
+  annulee = "ANNULEE"
   constructor(private produit:ProduitService) { }
 
   ngOnInit(): void {
@@ -24,4 +25,12 @@ export class ListeMenuComponent implements OnInit {
    }
   }
 
+  archived(id:number|undefined){
+    if(id){
+      this.produit.productsArchived(id).subscribe(data=>{
+        console.log(data)
+        location.reload()
+      })
+    }
+  }
 }

@@ -5,21 +5,42 @@
     background: #fff;
     left: 300px;
     padding: 20px;
+    
   }
   .container{
     width: 70%;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   }
-  .accordion{
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    cursor: pointer;
-  }
-  .button
+  
+.button
 {
     background-color: #D4401F;
     color: white;
-    border-radius: 10px;
     border: none;
-    height:4vh;
+    border-radius: 10px;
+    height: 3.5vh;
     margin-left: 2%;
+    margin-top: 1%;
+}
+.select{
+  height: fit-content;
+}
+.accordion {
+  padding: 10px;
+}
+.acc-title
+{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  cursor: pointer;
+}
+.accordion .accordion-item {
+  padding: .5rem .9375rem;
+  margin-top: 20px;
+  border-radius: 10px;
+  border-left: 10px solid #D4401F !important;
+  border-right: 10px solid #D4401F !important;
+  background: #ffffff;
+  -webkit-box-shadow: 32px 10px 57px 0px rgba(0,0,0,0.18);
+-moz-box-shadow: 32px 10px 57px 0px rgba(0,0,0,0.18);
+box-shadow: 32px 10px 57px 0px rgba(0,0,0,0.18);
 }

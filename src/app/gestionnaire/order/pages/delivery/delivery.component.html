@@ -3,130 +3,126 @@
   <ng-container>
     <div class="container mt-5">
       <h1 class="text-center">Les commandes terminées par zone</h1>
-      <ng-container>
-        <div class="accordion mb-2 p-1 w-100 mt-4">
-          <h4>Zone A</h4>
+      <div class="accordion">
+        <div class="accordion-item">
+          <h2 class="acc-title" id="accordion-button-1" aria-expanded="false">
+            <span class="accordion-title">Zone1</span>
+            <span class="icon" aria-hidden="true"></span>
+          </h2>
+          <div class="accordion-content">
+            <ng-container>
+             <table class="table table-striped mb-5">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Choisir</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color: #d4401f">
+                    <strong>jsgqhghdgxgfhgd</strong>
+                  </td>
+                  <td>hdjggdfhghfh</td>
+                  <td>200000</td>
+                  <td>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                      />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+            </ng-container>
+            <ng-container>
+              <div class="d-flex">
+                <select class="form-control w-25 mt-3 select" name="" id="">
+                  <option value="" selected disabled>Choisir</option>
+                  <ng-container *ngFor="let item of liv">
+                    <option value="{{ item.id }}">
+                      {{ item.prenom|uppercase }}{{ " " }}{{ item.nom|uppercase }}
+                    </option>
+                  </ng-container>
+                </select>
+                <button
+                  class="button mt-3"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Ajouter au panier"
+                >
+                  <h5 class="mt-1">Valider</h5>
+                </button>
+              </div>
+            </ng-container>
+          </div>
         </div>
-        <div>
-          <ng-container>
-            <div class="form-check mt-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-            <div class="form-check mt-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-            <div class="form-check mt-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-          </ng-container>
-          <ng-container>
-            <div class="d-flex">
-              <select class="form-control w-25" id="">
-                <option value="" disabled selected>Choisir un livreur</option>
-                <ng-container *ngFor="let item of liv">
-                  <option value="{{ item.id }}">
-                    {{ item.nom }}-{{ item.prenom }}
-                  </option>
-                </ng-container>
-              </select>
-              <button
-                class="button mt-2"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Ajouter au panier"
-              >
-                <h5 class="mb-1 mt-1">OK</h5>
-              </button>
-            </div>
-          </ng-container>
+        <div class="accordion-item">
+          <h2 class="acc-title" id="accordion-button-1" aria-expanded="false">
+            <span class="accordion-title">Zone1</span>
+            <span class="icon" aria-hidden="true"></span>
+          </h2>
+          <div class="accordion-content">
+            <ng-container>
+             <table class="table table-striped mb-5">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Choisir</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color: #d4401f">
+                    <strong>jsgqhghdgxgfhgd</strong>
+                  </td>
+                  <td>hdjggdfhghfh</td>
+                  <td>200000</td>
+                  <td>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                      />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+            </ng-container>
+            <ng-container>
+              <div class="d-flex">
+                <select class="form-control w-25 mt-3 select" name="" id="">
+                  <option value="" selected disabled>Choisir</option>
+                  <ng-container *ngFor="let item of liv">
+                    <option value="{{ item.id }}">
+                      {{ item.prenom|uppercase }}{{ " " }}{{ item.nom|uppercase }}
+                    </option>
+                  </ng-container>
+                </select>
+                <button
+                  class="button mt-3"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Ajouter au panier"
+                >
+                  <h5 class="mt-1">Valider</h5>
+                </button>
+              </div>
+            </ng-container>
+          </div>
         </div>
-      </ng-container>
-      <ng-container>
-        <div class="accordion mb-2 p-1 w-100 mt-4">
-          <h4>Zone B</h4>
-        </div>
-        <div>
-          <ng-container>
-            <div class="form-check mt-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-            <div class="form-check mt-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-            <div class="form-check mt-2">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-          </ng-container>
-          <ng-container>
-            <div class="d-flex">
-              <select class="form-control w-25" id="">
-                <option value="" disabled selected>Choisir un livreur</option>
-                <ng-container *ngFor="let item of liv">
-                  <option value="{{ item.id }}">
-                    {{ item.nom }}-{{ item.prenom }}
-                  </option>
-                </ng-container>
-              </select>
-              <button
-                class="button mt-2"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Ajouter au panier"
-              >
-                <h5 class="mb-1 mt-1">OK</h5>
-              </button>
-            </div>
-          </ng-container>
-        </div>
-      </ng-container>
+      </div>
     </div>
   </ng-container>
 </div>

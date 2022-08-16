@@ -60,22 +60,17 @@ export class CommandeService {
     )
   }
 
-  getAllZne(id:any) {
-   let urlZoneCmd = `https://tahirbrazilburger.herokuapp.com/api/zones/${id}/commandes`;
+  stateChange(etat:any, id:number){
     const headersOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.token.getToken()}`
       })
     }
-    console.log(headersOptions)
-    return this.http.get<any>(this.urlCmd, headersOptions).pipe(
-      map(data=>{
-        return data['hydra:member'].filter((zone:any)=>{
-            return zone.etat=="TERMINEE"
-        })
-      })
-    )
+    const state={
+      "etat":etat
+    }
+    return this.http.put<any>(`${this.urlCmd}/${id}`, state, headersOptions)
   }
 
   getAllLiv() {
@@ -85,7 +80,6 @@ export class CommandeService {
       })
     )
   }
-
   getAllZone() {
    
     return this.http.get<any>(this.urlzone).pipe(

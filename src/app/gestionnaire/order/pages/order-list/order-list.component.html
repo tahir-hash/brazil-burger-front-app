@@ -59,24 +59,27 @@
               <td>
                 <div class="text-right d-flex icons">
                   <button
+                  (click)="changeState(terminee,item.id)"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Terminée"
+                  class="btn btn-white border-secondary bg-warning btn-md mb-2"
+                >
+                  <i class="bi bi-cart-dash-fill"></i>
+                </button>
+                  <button
                     data-toggle="tooltip"
                     data-placement="bottom"
-                    title="Augmenter la quantite"
+                    title="Validée"
+                    (click)="changeState(validee,item.id)"
                     class="btn btn-white border-secondary bg-success btn-md mb-2"
                   >
                     <i class="bi bi-cart-plus-fill"></i>
                   </button>
                   <button
                     data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Diminuer la quantite"
-                    class="btn btn-white border-secondary bg-warning btn-md mb-2"
-                  >
-                    <i class="bi bi-cart-dash-fill"></i>
-                  </button>
-                  <button
-                    data-toggle="tooltip"
-                    title="Supprimer"
+                    title="Annulée"
+                    (click)="changeState(annulee,item.id)"
                     class="btn btn-white border-secondary bg-danger btn-md mb-2"
                   >
                     <i class="bi bi-cart-x-fill"></i>
@@ -84,7 +87,7 @@
                   <button
                     data-toggle="tooltip"
                     data-placement="bottom"
-                    title="Details"
+                    title="Details Commande"
                     class="btn btn-white border-secondary bg-info btn-md mb-2"
                   >
                     <i class="bi bi-info-circle-fill"></i>
