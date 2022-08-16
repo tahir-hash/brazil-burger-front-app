@@ -10,6 +10,7 @@ import { FilterCmdPipe } from 'src/app/Pipe/filter-cmd.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterDatePipe } from 'src/app/Pipe/filter-date.pipe';
 import { DeliveryComponent } from './pages/delivery/delivery.component';
+import { ZoneFilterPipe } from 'src/app/Pipe/zone-filter.pipe';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { DeliveryComponent } from './pages/delivery/delivery.component';
     OrderListComponent,
     FilterCmdPipe,
     FilterDatePipe,
-    DeliveryComponent
+    DeliveryComponent,
+    ZoneFilterPipe
   ],
   imports: [
     CommonModule,

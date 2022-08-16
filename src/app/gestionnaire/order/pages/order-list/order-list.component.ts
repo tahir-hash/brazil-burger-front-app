@@ -11,22 +11,17 @@ export class OrderListComponent implements OnInit {
   constructor(private commandeServ: CommandeService) { }
   selectDate: any = ''
   selectedValue: any = ''
+  selectedZone: any = ''
   enCours = "EN COURS"
   validee = "VALIDEE"
   annulee = "ANNULEE"
   allCmd: any[] = []
+  zones: any[] = []
   page: number = 1
   total: any
   ngOnInit(): void {
     this.commandeServ.getAll().subscribe(
       data => {
-       /*  this.allCmd = data.filter((cmd:any)=>{
-          var date= new Date(cmd.dateCmd)
-          var dat1= date.getFullYear()+'-'+date.getMonth()+'-'+ date.getDate();
-          var now=new Date()
-          var nowF=now.getFullYear()+'-'+now.getMonth()+'-'+ now.getDate();
-          return dat1==nowF && cmd.etat== 'EN COURS'
-        }) */
         this.allCmd=data
        console.log(this.allCmd)
       }
@@ -34,6 +29,9 @@ export class OrderListComponent implements OnInit {
     if (this.allCmd) {
       this.total = this.allCmd.length
     }
+    this.commandeServ.getAllZone().subscribe(data=>{
+      this.zones=data
+    })
   }
 
 }

@@ -1,42 +1,132 @@
 <mtm-header-admin></mtm-header-admin>
 <div class="content-wrapper">
-   <ng-container >
-  <div class="container mt-5">
-    <h1 class="text-center">Les commandes terminées par zone</h1>
-   <ng-container >
-    <div class="accordion  mb-2 p-1 w-100 mt-4">
-        <h4>Zone A</h4>
-     </div>
-     <ng-container >
-        <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Default checkbox
-            </label>
-          </div>
-          <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Default checkbox
-            </label>
-          </div> <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Default checkbox
-            </label>
-          </div>
-     </ng-container>
-     <ng-container >
-        <div class="d-flex flex-row w-100" ></div>
-        <select class="form-control w-25" id="">
-            <option value="" disabled selected> choisir un livreur</option>
+  <ng-container>
+    <div class="container mt-5">
+      <h1 class="text-center">Les commandes terminées par zone</h1>
+      <ng-container>
+        <div class="accordion mb-2 p-1 w-100 mt-4">
+          <h4>Zone A</h4>
+        </div>
+        <div>
+          <ng-container>
+            <div class="form-check mt-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+              </label>
+            </div>
+            <div class="form-check mt-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+              </label>
+            </div>
+            <div class="form-check mt-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+              </label>
+            </div>
+          </ng-container>
+          <ng-container>
+            <div class="d-flex">
+              <select class="form-control w-25" id="">
+                <option value="" disabled selected>Choisir un livreur</option>
                 <ng-container *ngFor="let item of liv">
-                    <option value="{{item.id}}">{{item.nom}}-{{item.prenom}}</option>
+                  <option value="{{ item.id }}">
+                    {{ item.nom }}-{{ item.prenom }}
+                  </option>
                 </ng-container>
-         </select>
-         <button>Ok</button>
-     </ng-container>
-   </ng-container>
-  </div>
-   </ng-container>
+              </select>
+              <button
+                class="button mt-2"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Ajouter au panier"
+              >
+                <h5 class="mb-1 mt-1">OK</h5>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-container>
+        <div class="accordion mb-2 p-1 w-100 mt-4">
+          <h4>Zone B</h4>
+        </div>
+        <div>
+          <ng-container>
+            <div class="form-check mt-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+              </label>
+            </div>
+            <div class="form-check mt-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+              </label>
+            </div>
+            <div class="form-check mt-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+              </label>
+            </div>
+          </ng-container>
+          <ng-container>
+            <div class="d-flex">
+              <select class="form-control w-25" id="">
+                <option value="" disabled selected>Choisir un livreur</option>
+                <ng-container *ngFor="let item of liv">
+                  <option value="{{ item.id }}">
+                    {{ item.nom }}-{{ item.prenom }}
+                  </option>
+                </ng-container>
+              </select>
+              <button
+                class="button mt-2"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Ajouter au panier"
+              >
+                <h5 class="mb-1 mt-1">OK</h5>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
 </div>

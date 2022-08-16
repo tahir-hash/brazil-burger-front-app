@@ -14,6 +14,7 @@ export class CommandeService {
   private urlCmd = "https://tahirbrazilburger.herokuapp.com/api/commandes";
   private urlCmdOwn = `https://tahirbrazilburger.herokuapp.com/api/clients/${this.idClient}/commandes`;
   private urlLIvreurs = "https://tahirbrazilburger.herokuapp.com/api/livreurs";
+  private urlzone = "https://tahirbrazilburger.herokuapp.com/api/zones";
 
 
   constructor(private toast: NgToastService, private http: HttpClient, private token: TokenService) { }
@@ -59,7 +60,7 @@ export class CommandeService {
     )
   }
 
-  getAllZone(id:any) {
+  getAllZne(id:any) {
    let urlZoneCmd = `https://tahirbrazilburger.herokuapp.com/api/zones/${id}/commandes`;
     const headersOptions = {
       headers: new HttpHeaders({
@@ -79,6 +80,15 @@ export class CommandeService {
 
   getAllLiv() {
     return this.http.get<any>(this.urlLIvreurs).pipe(
+      map(data=>{
+        return data['hydra:member']
+      })
+    )
+  }
+
+  getAllZone() {
+   
+    return this.http.get<any>(this.urlzone).pipe(
       map(data=>{
         return data['hydra:member']
       })

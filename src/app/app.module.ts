@@ -9,12 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { AuthGuard } from './AuthGuard/AuthGuard';
+import { ZoneFilterPipe } from './Pipe/zone-filter.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
+    ZoneFilterPipe,
    
   ],
   imports: [

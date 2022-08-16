@@ -14,3 +14,12 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     cursor: pointer;
   }
+  .button
+{
+    background-color: #D4401F;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    height:4vh;
+    margin-left: 2%;
+}

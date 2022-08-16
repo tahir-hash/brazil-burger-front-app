@@ -9,10 +9,18 @@
         <h4>Filtrer Par</h4>
         <div class="etat">
           <select [(ngModel)]="selectedValue" class="form-control" id="">
-            <option value="" selected disabled>Choisir</option>
+            <option value="" selected disabled>Choisir un etat</option>
             <option value="{{ enCours }}">{{ enCours }}</option>
             <option value="{{ validee }}">{{ validee }}</option>
             <option value="{{ annulee }}">{{ annulee }}</option>
+          </select>
+        </div>
+        <div class="etat">
+          <select [(ngModel)]="selectedZone" class="form-control" id="">
+            <option value="" selected disabled>Choisir une zone</option>
+            <ng-container *ngFor="let zone of zones" >
+              <option value="{{zone.libelle}}">{{zone.libelle|uppercase}}</option>
+            </ng-container>
           </select>
         </div>
         <div class="date">
@@ -36,6 +44,7 @@
               let item of allCmd
                 | filterCmd: selectedValue
                 | filterDate: selectDate
+                | zoneFilter:selectedZone
                 | paginate
                   : { itemsPerPage: 3, currentPage: page, totalItems: total }
             "
