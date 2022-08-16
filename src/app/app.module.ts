@@ -10,11 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { AuthGuard } from './AuthGuard/AuthGuard';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    
+   
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,7 @@ import { AuthGuard } from './AuthGuard/AuthGuard';
     FormsModule
     ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
 

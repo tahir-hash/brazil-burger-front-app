@@ -35,8 +35,6 @@
       <ng-container
         *ngFor="
           let one of own
-            | filterCmd: selectedValue
-            | dateFilter:selectDate
             | paginate
               : { itemsPerPage: 3, currentPage: page, totalItems: total }
         "

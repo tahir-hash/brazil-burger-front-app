@@ -7,20 +7,18 @@
   <nav class="dashboard-nav-list">
     <a href="#" class="dashboard-nav-item "
       ><i class="fas fa-tachometer-alt"></i> Dashboard </a
-    ><a routerLink="/admin/products/menu"  class="dashboard-nav-item"
-      ><i class="fa-solid fa-utensils"></i> Gestions Menus
+    ><a href="/admin/products/menu"  class="dashboard-nav-item"
+      ><i class="fa-solid fa-utensils"></i>  Menus
     </a>
     <a href="#" class="dashboard-nav-item"
-      ><i class="fa-solid fa-burger"></i> Gestions Burgers
+      ><i class="fa-solid fa-burger"></i>  Burgers
     </a>
-    <a href="#" class="dashboard-nav-item"
-      ><i class="fa-solid fa-french-fries"></i>Gestions Portions
-    </a>
-    <a href="#" class="dashboard-nav-item"
-      ><i class="bi bi-cup-straw"></i> Gestions Boissons
-    </a>
-    <a href="#" class="dashboard-nav-item"
-    ><i class="fa-solid fa-truck"></i> Gestions Commandes
+
+    <a href="/admin/order/all" class="dashboard-nav-item"
+    ><i class="fa-solid fa-cart-arrow-down"></i>  Commandes
+  </a>
+  <a href="#" class="dashboard-nav-item"
+    ><i class="fa-solid fa-truck"></i>  Livraisons
   </a>
     <div  class="nav-item-divider"></div>
     <a (click)="logout()" class="dashboard-nav-item"

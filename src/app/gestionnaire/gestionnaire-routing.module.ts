@@ -6,7 +6,8 @@ import { AuthGuard } from '../AuthGuard/AuthGuard';
 
 const routes: Routes = [
   {path:"", redirectTo:"products", pathMatch:"full"},
-  { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)}
+  { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)},
+  { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) }
 ];
 
 @NgModule({

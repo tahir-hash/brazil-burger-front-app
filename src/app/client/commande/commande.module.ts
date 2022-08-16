@@ -11,15 +11,15 @@ import { EmptyCartComponent } from './components/empty-cart/empty-cart.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterCmdPipe } from 'src/app/Pipe/filter-cmd.pipe';
-import { DateFilter } from 'src/app/Pipe/DateFilter';
+import { FilterDatePipe } from 'src/app/Pipe/filter-date.pipe';
 @NgModule({
   declarations: [
     CommandeComponent,
     PanierComponent,
     MesCommandesComponent,
     EmptyCartComponent,
-    FilterCmdPipe,
-    DateFilter
+    /* FilterCmdPipe,
+    FilterDatePipe */
   ],
   imports: [
     CommonModule,

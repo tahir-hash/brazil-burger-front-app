@@ -41,4 +41,18 @@ export class CommandeService {
     )
   }
 
+  getAll() {
+    const headersOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token.getToken()}`
+      })
+    }
+    console.log(headersOptions)
+    return this.http.get<any>(this.urlCmd, headersOptions).pipe(
+      map(data=>{
+        return data['hydra:member']
+      })
+    )
+  }
 }

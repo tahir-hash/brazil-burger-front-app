@@ -8,13 +8,14 @@ const routes: Routes = [
   { path: 'client', loadChildren: () => import('./client/client.module').then(m => m.ClientModule) },
   { path: '', redirectTo: 'client', pathMatch: 'full' },
   { path: 'securite', loadChildren: () => import('./securite/securite.module').then(m => m.SecuriteModule) },
-  { 
-    path: 'admin', 
-    children : [{
-      path: 'products', 
-      loadChildren: () => import('.//gestionnaire/products/products.module').then(m => m.ProductsModule) 
-    }],
-    canActivate : [AuthGuard],
+  {
+    path: 'admin',
+    children: [{
+      path: 'products',
+      loadChildren: () => import('.//gestionnaire/products/products.module').then(m => m.ProductsModule)
+    }, { path: 'order', loadChildren: () => import('.//gestionnaire/order/order.module').then(m => m.OrderModule) }
+    ],
+    canActivate: [AuthGuard],
     data: {
       role: Role.admin
     }
@@ -26,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'top' })],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

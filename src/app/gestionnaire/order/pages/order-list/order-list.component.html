@@ -1,0 +1,80 @@
+<mtm-header-admin></mtm-header-admin>
+<div class="content-wrapper">
+  <ng-container *ngIf="allCmd.length==0"  >
+    <mtm-loader-admin></mtm-loader-admin>
+</ng-container>
+  {{ allCmd | json }}
+  <ng-container *ngIf="allCmd.length!=0">
+    <div class="container mt-5">
+      <div class="filter d-flex justify-content-between mb-3">
+        <h4>Filtrer Par</h4>
+        <div class="etat">
+          <select [(ngModel)]="selectedValue" class="form-control" id="">
+            <option value="" selected disabled>Choisir</option>
+            <option value="{{ enCours }}">{{ enCours }}</option>
+            <option value="{{ validee }}">{{ validee }}</option>
+            <option value="{{ annulee }}">{{ annulee }}</option>
+          </select>
+        </div>
+        <div class="date">
+          <input [(ngModel)]="selectDate" type="date" class="form-control" />
+        </div>
+      </div>
+      <h1 class="card-title">Les commandes</h1>
+      <table class="table table-striped mb-5">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Total</th>
+            <th scope="col">Etat</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of allCmd
+                | filterCmd: selectedValue
+                | filterDate: selectDate
+                | paginate
+                  : { itemsPerPage: 3, currentPage: page, totalItems: total }
+            "
+          >
+            <tr>
+              <td style="color: #d4401f">
+                <strong>{{ item.numCmd }}</strong>
+              </td>
+              <td>{{ item.dateCmd | date: "medium" }}</td>
+              <td>{{ item.montant }}</td>
+              <td>{{ item.etat }}</td>
+              <td>
+                <div class="text-right d-flex icons">
+                  <button
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Details"
+                    class="btn btn-white border-secondary bg-info btn-md mb-2"
+                  >
+                    <i class="bi bi-info-circle-fill"></i>
+                  </button>
+                  <button
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Annuler"
+                    class="btn btn-white border-secondary bg-danger btn-md mb-2"
+                  >
+                    <i class="bi bi-cart-x-fill"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <div class="paginate">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>
+  </ng-container>
+</div>
