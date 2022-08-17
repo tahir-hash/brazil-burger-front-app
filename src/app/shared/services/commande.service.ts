@@ -88,4 +88,18 @@ export class CommandeService {
       })
     )
   }
+
+  getZoneCmd(id:number) {
+    const headersOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token.getToken()}`
+      })
+    }
+    return this.http.get<any>(`${this.urlzone}/${id}/commandes`, headersOptions).pipe(
+      map(data=>{
+        return data['hydra:member']
+      })
+    )
+  }
 }

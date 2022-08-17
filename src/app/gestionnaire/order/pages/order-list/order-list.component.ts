@@ -10,13 +10,13 @@ import { CommandeService } from 'src/app/shared/services/commande.service';
 export class OrderListComponent implements OnInit {
 
   constructor(private commandeServ: CommandeService,private toast:NgToastService) { }
-  selectDate: any = ''
-  selectedValue: any = ''
-  selectedZone: any = ''
   enCours = "EN COURS"
   validee = "VALIDEE"
   annulee = "ANNULEE"
   terminee = "TERMINEE"
+  selectDate: any = ''
+  selectedValue: any = this.enCours
+  selectedZone: any = ''
   allCmd: any[] = []
   zones: any[] = []
   page: number = 1

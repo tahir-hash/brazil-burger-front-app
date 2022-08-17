@@ -5,7 +5,7 @@ import { OrderRoutingModule } from './order-routing.module';
 import { OrderComponent } from './order.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { LayoutModule } from '../layout/layout.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterCmdPipe } from 'src/app/Pipe/filter-cmd.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterDatePipe } from 'src/app/Pipe/filter-date.pipe';
@@ -27,7 +27,8 @@ import { ZoneFilterPipe } from 'src/app/Pipe/zone-filter.pipe';
     OrderRoutingModule,
     LayoutModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ]
 })
 export class OrderModule { }
