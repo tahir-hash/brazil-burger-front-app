@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { CommandeService } from 'src/app/shared/services/commande.service';
 
@@ -18,6 +18,7 @@ export class OrderListComponent implements OnInit {
   selectedValue: any = this.enCours
   selectedZone: any = ''
   allCmd: any[] = []
+  @Input() cmdLiv: any[] = []
   zones: any[] = []
   page: number = 1
   total: any
@@ -25,7 +26,7 @@ export class OrderListComponent implements OnInit {
     this.commandeServ.getAll().subscribe(
       data => {
         this.allCmd=data
-       console.log(this.allCmd)
+        console.log(data)
       }
     )
     if (this.allCmd) {

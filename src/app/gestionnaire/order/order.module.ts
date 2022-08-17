@@ -11,6 +11,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterDatePipe } from 'src/app/Pipe/filter-date.pipe';
 import { DeliveryComponent } from './pages/delivery/delivery.component';
 import { ZoneFilterPipe } from 'src/app/Pipe/zone-filter.pipe';
+import { DeliveryListComponent } from './pages/delivery-list/delivery-list.component';
+import { DetailsLivComponent } from './pages/details-liv/details-liv.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { ZoneFilterPipe } from 'src/app/Pipe/zone-filter.pipe';
     FilterCmdPipe,
     FilterDatePipe,
     DeliveryComponent,
-    ZoneFilterPipe
+    ZoneFilterPipe,
+    DeliveryListComponent,
+    DetailsLivComponent
   ],
   imports: [
     CommonModule,

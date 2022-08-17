@@ -23,7 +23,9 @@ export class DeliveryComponent implements OnInit {
     })
     })
     this.commandeServe.getAllLiv().subscribe(data=>{
-      this.liv=data
+      this.liv= data.filter((item:any) => {
+        return item.etat === "DISPONIBLE"
+      })
     })
 
     this.myform=this.fb.group({
