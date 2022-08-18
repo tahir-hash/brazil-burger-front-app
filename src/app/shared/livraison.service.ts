@@ -45,4 +45,17 @@ export class LivraisonService {
 
     return this.http.get<any>(`${this.urlLiv}/${id}`, headersOptions)
   }
+
+  deliveryUpdate(etat:any, id:number){
+    const headersOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token.getToken()}`
+      })
+    }
+    const state={
+      "etat":etat
+    }
+    return this.http.put<any>(`${this.urlLiv}/${id}`, state, headersOptions)
+  }
 }

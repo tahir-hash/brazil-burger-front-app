@@ -16,12 +16,15 @@ export class DeliveryComponent implements OnInit {
   orderEnd:any[]=[]
   liv:any[]=[]
   myform:any;
+  tes:any[]=[]
+  teams:any[]=[]
   ngOnInit(): void {
     this.commandeServe.getZoneCmd(36).subscribe(data=>{
      this.orderEnd= data.filter((item:any) => {
       return item.etat === "TERMINEE"
     })
     })
+    //livreur disponible
     this.commandeServe.getAllLiv().subscribe(data=>{
       this.liv= data.filter((item:any) => {
         return item.etat === "DISPONIBLE"
@@ -47,7 +50,7 @@ export class DeliveryComponent implements OnInit {
       check.removeAt(index);
      }
   }
-
+  
   //submit 
   submitData(){
     let tab:any[]=[]

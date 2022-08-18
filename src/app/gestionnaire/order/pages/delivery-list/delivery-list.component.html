@@ -6,46 +6,52 @@
  </ng-container>
 <ng-container *ngIf="allLiv.length!=0">
 	<div class="content-wrapper">
-		{{allLiv|json}}
 		<div class="container mt-5">
 			<h1 class="card-title">LISTE DES LIVRAISONS</h1>
 				<button type="submit" class="btn btn-c m-3">
 					<a class="badge" routerLink="/admin/order/delivery-add">AJOUTER UN LIVRAISON</a>
 				</button>
-	
+				<div class="filter d-flex justify-content-between mb-3">
+					<h4>Filtrer Par</h4>
+					<div class="etat">
+					  <select [(ngModel)]="selectedValue" class="form-control" id="">
+						<option value="" selected disabled>Choisir un etat</option>
+						<option value="{{ enCours }}">{{ enCours }}</option>
+						<option value="{{ validee }}">{{ validee }}</option>
+						<option value="{{ annulee }}">{{ annulee }}</option>
+					  </select>
+					</div>
+				</div>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th scope="col">Prenom</th>
 						<th scope="col">Nom</th>
 						<th scope="col">Montant Livraison</th>
+						<th scope="col">Etat Livraison</th>
 						<th scope="col">Actions</th>
 					</tr>
 				</thead>
 				<ng-container>
-					<ng-container *ngFor="let item of allLiv">
+					<ng-container *ngFor="let item of allLiv |filterCmd:selectedValue">
 						<tr>
 							<td>{{item.livreur.prenom|uppercase}}</td>
 							<td>{{item.livreur.nom|uppercase}}</td>
 							<td>{{item.montantTotal}}</td>
+							<td>{{item.etat}}</td>
 							<td>
 								<div class="text-right d-flex icons">
 									<button
+									*ngIf="item.etat!='VALIDEE'"
 									  data-toggle="tooltip"
 									  data-placement="bottom"
 									  title="Validée"
+									  (click)="update('VALIDEE',item.id)"
 									  class="btn btn-white border-secondary bg-success btn-md mb-2"
 									>
 									  <i class="bi bi-cart-plus-fill"></i>
 									</button>
-									<button
-									  data-toggle="tooltip"
-									  data-placement="bottom"
-									  title="Archiver"
-									  class="btn btn-white border-secondary bg-danger btn-md mb-2"
-									>
-									  <i class="bi bi-cart-x-fill"></i>
-									</button>
+									
 									<a routerLink="/admin/order/delivery/{{item.id}}">
 										<button
 									  data-toggle="tooltip"

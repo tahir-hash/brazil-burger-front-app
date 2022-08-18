@@ -26,12 +26,12 @@ export class OrderListComponent implements OnInit {
     this.commandeServ.getAll().subscribe(
       data => {
         this.allCmd=data
-        console.log(data)
       }
     )
     if (this.allCmd) {
       this.total = this.allCmd.length
     }
+    console.log(this.cmdLiv)
     this.commandeServ.getAllZone().subscribe(data=>{
       this.zones=data
     })

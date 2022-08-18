@@ -14,7 +14,6 @@ export class DetailsLivComponent implements OnInit {
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
     this.livraisonServ.oneDelivery(id).subscribe(data=>{
-      console.log(data.commandes);
       this.cmdLiv=data.commandes
     })
   }
