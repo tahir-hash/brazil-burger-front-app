@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gestionnaire.component.css']
 })
 export class GestionnaireComponent implements OnInit {
-
+  date:any= new Date;
   constructor() { }
 
   ngOnInit(): void {

@@ -160,6 +160,7 @@
                 </tr>  
              </ng-container>
              <!-- boissons -->
+
              <ng-container *ngIf="product.boissonTaille">
               <tr class="mb-4">
                 <td data-th="Product">
@@ -208,7 +209,7 @@
                     <button
                       data-toggle="tooltip"
                       title="Supprimer"
-                      (click)="removeToCart(product.boissonTaille)"
+                      (click)="removeToCart(product)"
                       class="btn btn-white border-secondary bg-danger btn-md mb-2"
                     >
                       <i class="bi bi-cart-x-fill"></i>
@@ -274,7 +275,7 @@
                     <button
                       data-toggle="tooltip"
                       title="Supprimer"
-                      (click)="removeToCart(product.portionFrite)"
+                      (click)="removeToCart(product)"
                       class="btn btn-white border-secondary bg-danger btn-md mb-2"
                     >
                       <i class="bi bi-cart-x-fill"></i>

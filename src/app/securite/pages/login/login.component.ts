@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         let jwt_decoded: any = jwt_decode(this.token.getToken())
         //console.log(jwt_decoded)
         if(jwt_decoded.roles[0]==Role.admin){
-          this.router.navigate(['/admin/products/menu']);
+          this.router.navigate(['/admin/dashboard']);
         }
         if(jwt_decoded.roles[0]==Role.client){
           this.router.navigate(['/client/products/catalogue']);

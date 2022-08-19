@@ -5,6 +5,8 @@
     background: #fff;
     left: 300px;
     padding: 20px;
+    overflow-y: scroll;
+
   }
 .icons{
   margin-left: 7%;

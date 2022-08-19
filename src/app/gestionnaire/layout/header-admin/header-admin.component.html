@@ -5,7 +5,7 @@
     >
   </header>
   <nav class="dashboard-nav-list">
-    <a href="#" class="dashboard-nav-item "
+    <a routerLink="/admin/dashboard" class="dashboard-nav-item "
       ><i class="fas fa-tachometer-alt"></i> Dashboard </a
     ><a routerLink="/admin/products/menu"  class="dashboard-nav-item"
       ><i class="fa-solid fa-utensils"></i>  Menus
@@ -21,7 +21,7 @@
     ><i class="fa-solid fa-truck"></i>  Livraisons
   </a>
     <div  class="nav-item-divider"></div>
-    <a (click)="logout()" class="dashboard-nav-item"
+    <a (click)="logout()" class="dashboard-nav-item log"
       ><i class="fas fa-sign-out-alt"></i> Logout
     </a>
   </nav>

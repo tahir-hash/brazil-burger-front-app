@@ -1,0 +1,18 @@
+.content-wrapper{
+    width: calc(100% - 300px);
+    height: 100%;
+    position: fixed;
+    background: #fff;
+    left: 300px;
+    padding: 20px;
+    border: 5px solid black;
+    overflow-y: scroll;
+  }
+
+.bord{
+  border-left: 5px solid #D4401F;
+}
+
+.price{
+  color: #D4401F;
+}

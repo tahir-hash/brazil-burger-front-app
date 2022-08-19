@@ -221,7 +221,7 @@ export class CartService {
     }
     if(object.boissonTaille){
       this.Panier.value.boissonTailleCommandes?.map((data, i) => {
-        if (data.boissonTaille.id == object?.id) {
+        if (data.boissonTaille.id == object?.boissonTaille.id) {
           this.Panier.value.boissonTailleCommandes?.splice(i, 1)
         }
       })
@@ -236,7 +236,7 @@ export class CartService {
     }
     if(object.portionFrite){
       this.Panier.value.portionFriteCommandes?.map((data, i) => {
-        if (data.portionFrite.id == object?.id) {
+        if (data.portionFrite.id == object?.portionFrite.id) {
           this.Panier.value.portionFriteCommandes?.splice(i, 1)
         }
       })

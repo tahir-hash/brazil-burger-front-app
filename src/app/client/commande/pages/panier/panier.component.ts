@@ -43,6 +43,7 @@ export class PanierComponent implements OnInit {
   }
   removeToCart(obj:any) {
     this.cart.remove(obj);
+    this.toast.info({detail:"Suppression du Panier", summary:"Produit supprimer  avec succès!!!", position:'br',duration:5000})
   }
 
   //nav tabs
