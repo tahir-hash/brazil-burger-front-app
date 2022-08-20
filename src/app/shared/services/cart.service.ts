@@ -19,6 +19,7 @@ export class CartService {
     boissonTailleCommandes: [],
     menuCommandes: [],
     zone: {},
+    telClient:'',
     all: []
   }
   Panier = new BehaviorSubject<Cart>(this.panierSave);

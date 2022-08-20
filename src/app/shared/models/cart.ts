@@ -10,5 +10,6 @@ export interface Cart {
     boissonTailleCommandes?:BoissonTailleCommande[]
     menuCommandes?:MenuCommande[],
     zone?:Zone
+    telClient?:string
     all:any[]
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { Cart } from 'src/app/shared/models/cart';
@@ -21,12 +22,14 @@ export class PanierComponent implements OnInit {
   };
   prix: number=0
   qrt:Quartier[]=[]
+  commande:any;
   constructor(private cart:CartService,
     private quartier:QuartiersService,
     private commandeServ: CommandeService,
     private toast: NgToastService,
     private token:TokenService,
-    private router: Router) { }
+    private router: Router,
+    private fb: FormBuilder) { }
   
   ngOnInit(): void {
     this.cart.Panier.subscribe(data=>{
@@ -40,7 +43,17 @@ export class PanierComponent implements OnInit {
     this.quartier.getQuartier$().subscribe(quart=>{
       this.qrt=quart
     })
+
+    this.commande = this.fb.group({
+      zone: [null, Validators.required],
+      telClient: [null,[Validators.required,Validators.minLength(9),Validators.maxLength(9)]],
+    })
   }
+
+  get zone() { return this.commande.get('zone') }
+  get telClient() { return this.commande.get('telClient') }
+
+
   removeToCart(obj:any) {
     this.cart.remove(obj);
     this.toast.info({detail:"Suppression du Panier", summary:"Produit supprimer  avec succès!!!", position:'br',duration:5000})
@@ -60,23 +73,28 @@ ok=this.cart.Panier.value
 
   validCmd(){
     if(this.token.isConnect()){
-      let test: Zone= {
-        id:36
+      
+      if(this.commande.value.zone!=null){
+        let zone: Zone= {
+          id:this.commande.value.zone
+        }
+        this.cart.Panier.value.zone=zone
+        this.cart.Panier.value.telClient=this.commande.value.telClient
       }
-      this.cart.Panier.value.zone=test
       this.commandeServ.saveCart(this.cart.Panier.value).subscribe(
         err=>console.log(err)
       )
       this.cart.emptyCart(this.cart.Panier);
       this.router.navigate(['/client/products/catalogue']);
-      this.toast.success({detail:"Commande Validée", summary:"Votre commande a été validéé avec succès!!!", position:'bl',duration:5000})
+      this.toast.success({detail:"Commande Validée", summary:"Votre commande a été validéé avec succès!!!", position:'bl',duration:5000}) 
      // window.location.reload();
     }
-    else{
+     else{
       this.router.navigate(['/securite/login']);
       this.toast.error({detail:"Unauthorized", summary:"Veuillez vous connecter d'abord!!!",position:'tl', duration:5000})
 
     }
+    //console.log(this.cart.Panier.value)
   }
   
 }

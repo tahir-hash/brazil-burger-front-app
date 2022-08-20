@@ -28,8 +28,8 @@ export class TokenService {
 
   logOut(){
     localStorage.clear()
-    window.location.reload()
     this.router.navigate(['/client/products/catalogue']);
+    window.location.reload()
   }
 
   

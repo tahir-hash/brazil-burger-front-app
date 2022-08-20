@@ -8,6 +8,7 @@ import { CommandeService } from '../shared/services/commande.service';
 })
 export class GestionnaireComponent implements OnInit {
   date: any = new Date();
+  date1: any = new Date().toLocaleDateString();
   prixD: number = 0
   prixM: number = 0
   allDayC: any[] = []
@@ -24,8 +25,9 @@ export class GestionnaireComponent implements OnInit {
           return day.etat == this.validee && day.dateCmd==this.date
         })
         this.allDayC = data.filter((day: any) => {
-          return day.etat == this.enCours && day.dateCmd==this.date
+          return day.etat == this.enCours && new Date(day.dateCmd).toLocaleDateString()==this.date.toLocaleDateString()
         })
+        console.log(this.allDayC)
         this.allMonth = data.filter((day: any) => {
           return day.etat == this.validee && new Date(day.dateCmd).getMonth()==this.date.getMonth()
         })
@@ -38,7 +40,6 @@ export class GestionnaireComponent implements OnInit {
 
         if (this.allMonth) {
           this.allMonth.map((day: any) => {
-            console.log(day.montant)
             this.prixM += day.montant
           })
         }
