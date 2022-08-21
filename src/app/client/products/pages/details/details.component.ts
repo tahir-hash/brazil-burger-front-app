@@ -26,17 +26,12 @@ export class DetailsComponent implements OnInit {
   tab: any[] = []
   tab1: any[] = []
   tabFries: any[] = []
+  test: any={}
   commandeMenuBoissonTailles: BoissonTaille[] = []
   disabled_attr: boolean = false;
   constructor(private service: ProduitService, public route: ActivatedRoute, private cart: CartService, private toast: NgToastService) { }
   ngOnInit(): void {
-    /* this.serv.getValue().subscribe(info =>{
-      console.log(this.quantite)
-     // this.quantite=0
-      this.quantite+=info
-   }) */
-
-
+   
     let id = this.route.snapshot.paramMap.get('id');
 
     this.service.one$(id).subscribe(data => {
@@ -77,24 +72,12 @@ export class DetailsComponent implements OnInit {
           }
         ]
       }
-      let cmd = {
-        quantite: nbr,
-        boissonTaille: {
-          id: Number(event.jus.id)
-        }
-      }
-      this.commandeMenuBoissonTailles.push(cmd)
       this.tab.push(object);
     }
     else {
       var isFound = false;
       this.tab.map(data => {
         if (data.idTaille == event.idTaille) {
-          isFound = true;
-        }
-      })
-      this.commandeMenuBoissonTailles.map(data => {
-        if (data.boissonTaille?.id == event.jus.id) {
           isFound = true;
         }
       })
@@ -110,13 +93,6 @@ export class DetailsComponent implements OnInit {
           ]
         }
         //commandeMenuBoissonTailles
-        let cmd = {
-          quantite: nbr,
-          boissonTaille: {
-            id: event.jus.id
-          }
-        }
-        this.commandeMenuBoissonTailles.push(cmd)
         this.tab.push(object);
       }
       else {
@@ -142,27 +118,10 @@ export class DetailsComponent implements OnInit {
           }
 
         })
-        this.commandeMenuBoissonTailles.map(data => {
-          let FoundB = false
-          if (data.boissonTaille?.id == event.jus.id) {
-            let cmd = {
-              quantite: nbr,
-              boissonTaille: {
-                id: event.jus.id
-              }
-            }
-            data.boissonTaille = cmd.boissonTaille
-            //FoundB=true
-            /* if (FoundB == false) {
-              tabB.push(cmd)
-            } */
-          }
 
-        })
       }
     }
 
-    console.log(this.tab)
     this.ShowError(this.tab)
   }
   ShowError(tab: any[]) {
@@ -238,7 +197,7 @@ export class DetailsComponent implements OnInit {
         })
       }
     }
-    console.log(this.tab1)
+    //console.log(this.tab1)
     //----------------------------------VALIDATION-------------------------------------
 
     this.ShowError1(this.tab)
@@ -260,7 +219,47 @@ export class DetailsComponent implements OnInit {
   }
 
   recupObjCmd(event: any) {
+    if (this.commandeMenuBoissonTailles.length == 0) {
+    let cmd:BoissonTaille={
+      quantite:event.jus.nbr,
+      boissonTaille:{
+        id:event.jus.id
+      }
+    }
+      this.commandeMenuBoissonTailles.push(cmd);
+    }
+    else{
+      var isFound = false;
+      this.commandeMenuBoissonTailles.map(data => {
+        if (data.boissonTaille.id == event.jus.id) {
+          isFound = true;
+        }
+      })
+      if (isFound == false) {
+        let cmd:BoissonTaille={
+          quantite:event.jus.nbr,
+          boissonTaille:{
+            id:event.jus.id
+          }
+        }
+        this.commandeMenuBoissonTailles.push(cmd);
+      }
+      else {
+        this.commandeMenuBoissonTailles.map((data:any,index) => {
+          if (data.boissonTaille.id == event.jus.id) {
+            let cmd:BoissonTaille={
+              quantite:event.jus.nbr,
+              boissonTaille:{
+                id:event.jus.id
+              }
+            }
+            this.commandeMenuBoissonTailles[index]=cmd
+          }
+        })
 
+      }
+    }
+    console.log(this.commandeMenuBoissonTailles)
   }
 
   friesObj(event: any,id:number,nom:string,prix:number){
@@ -295,13 +294,16 @@ export class DetailsComponent implements OnInit {
       }
       else{
         this.tabFries.map(data=>{
-          console.log(data);
+          //console.log(data);
           if(data.portionFrite.id==id){
             data.quantite=event;
           }
         })
       }
     }
-    console.log(this.tabFries)
+   // console.log(this.tabFries)
   }
+
+  // myTimeout = setInterval(this.recupObj(this.test), 1000);
+
 }

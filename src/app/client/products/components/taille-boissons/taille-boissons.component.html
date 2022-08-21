@@ -3,6 +3,7 @@
         <h4 class="type" style="color: #D4401F;">{{tailles.taille?.libelle}}({{tailles.quantite*btnQte}})</h4> 
         <div class="boissons d-flex mb-5">
             <ng-container *ngFor="let boisson of tailles?.taille?.boissonTailles">
+                {{boisson?.id}}
                 <mtm-boissons  (juiceChanged)="validQte($event)" (juiceChanged)="valid(boisson?.id,boisson?.stock,tailles.taille?.id,tailles.quantite*btnQte)" [boisson]="boisson"></mtm-boissons>
             </ng-container>
         </div>

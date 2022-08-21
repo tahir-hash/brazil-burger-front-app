@@ -65,7 +65,7 @@ constructor(private cart:CartService,private toast: NgToastService) { }
    this.cart.addBoissonTaille(this.tab1)
    this.cart.addfrites(this.tabFries)
 
-   console.log(this.tab1)
+   //console.log(this.tab1)
     console.log(this.cart.Panier.value)
   }
 
