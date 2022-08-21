@@ -16,7 +16,7 @@ import { Produit } from '../../../../shared/models/produit';
 export class DetailsDescComponent implements OnInit {
 @Input() details:Produit| undefined = undefined;
 @Input() commandeMenuBoissonTailles:BoissonTaille[] = [];
-@Input() disabled_attr:boolean = false;
+@Input() disabled_attr:boolean = true;
 @Input() tab1:BoissonTailleCommande[]=[]
 @Input() tabFries:PortionFriteCommande[]=[]
  btnQte=1;

@@ -27,8 +27,10 @@ export class DetailsComponent implements OnInit {
   tab1: any[] = []
   tabFries: any[] = []
   test: any={}
+  quantiteMenu:number=0
+  quantiteChoix:number=0
   commandeMenuBoissonTailles: BoissonTaille[] = []
-  disabled_attr: boolean = false;
+  disabled_attr: boolean = true;
   constructor(private service: ProduitService, public route: ActivatedRoute, private cart: CartService, private toast: NgToastService) { }
   ngOnInit(): void {
    
@@ -36,6 +38,9 @@ export class DetailsComponent implements OnInit {
 
     this.service.one$(id).subscribe(data => {
       this.produit = data
+      this.produit?.menu.menuTailles.forEach((element:any) => {
+          this.quantiteMenu+=element.quantite
+      });
     })
   }
   activeTab: string = 'search';
@@ -92,7 +97,6 @@ export class DetailsComponent implements OnInit {
             }
           ]
         }
-        //commandeMenuBoissonTailles
         this.tab.push(object);
       }
       else {
@@ -121,27 +125,38 @@ export class DetailsComponent implements OnInit {
 
       }
     }
-
+    this.quantiteChoix=0
+  console.log(this.tab)
     this.ShowError(this.tab)
   }
-  ShowError(tab: any[]) {
+  ShowError(tab: any[]) {  
+    tab.forEach((element:any) => {
+      element.boisson.forEach((value:any) => {
+        this.quantiteChoix+=value.nbr
+      })
+    });  
     tab.forEach(data => {
+      console.log(this.quantiteChoix)
       let totalNbr = 0
       let tabB: any[] = data.boisson
       tabB.forEach((boisson) => {
         totalNbr += boisson.nbr
+        //console.log("tahir"+""+totalAll)
         if (boisson.nbr > boisson.stock) {
-          this.toast.error({ detail: "Error message", summary: "Stock indisponible", position: 'bl', duration: 5000 })
-          //this.disabled_attr = true
+          this.toast.error({ detail: "Error message", summary: "Stock indisponible", position: 'bl', duration: 1000 })
+          this.disabled_attr = true
         }
         if (data.quantite < totalNbr) {
-          this.toast.error({ detail: "Error message", summary: "Vous avez dépassé le nombre de boisson", position: 'bl', duration: 5000 })
-          // this.disabled_attr = true
+          this.toast.error({ detail: "Error message", summary: "Vous avez dépassé le nombre de boisson", position: 'bl', duration: 1000 })
+          this.disabled_attr = true
         }
         if (data.quantite > totalNbr) {
-          // this.disabled_attr = true
+           this.disabled_attr = true
         }
 
+         if(boisson.nbr < boisson.stock && data.quantite == totalNbr && this.quantiteChoix==this.quantiteMenu ){
+            this.disabled_attr = false
+        } 
       })
     })
   }
@@ -259,7 +274,7 @@ export class DetailsComponent implements OnInit {
 
       }
     }
-    console.log(this.commandeMenuBoissonTailles)
+    //console.log(this.commandeMenuBoissonTailles)
   }
 
   friesObj(event: any,id:number,nom:string,prix:number){
