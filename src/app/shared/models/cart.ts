@@ -9,7 +9,7 @@ export interface Cart {
     portionFriteCommandes?:PortionFriteCommande[]
     boissonTailleCommandes?:BoissonTailleCommande[]
     menuCommandes?:MenuCommande[],
-    zone?:Zone
-    telClient?:string
+    zone?:Zone|null
+    telClient?:string|null
     all:any[]
 }

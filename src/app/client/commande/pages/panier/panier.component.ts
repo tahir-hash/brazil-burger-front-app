@@ -74,13 +74,20 @@ ok=this.cart.Panier.value
   validCmd(){
     if(this.token.isConnect()){
       
-      if(this.commande.value.zone!=null){
+      if(this.activeTab=='search'){
         let zone: Zone= {
           id:this.commande.value.zone
         }
         this.cart.Panier.value.zone=zone
         this.cart.Panier.value.telClient=this.commande.value.telClient
       }
+      if(this.activeTab=='result'){
+        delete(this.cart.Panier.value.zone)
+        delete(this.cart.Panier.value.telClient)
+      }
+      console.log(this.cart.Panier.value);
+    //  console.log(this.cart.Panier.value)
+      
       this.commandeServ.saveCart(this.cart.Panier.value).subscribe(
         err=>console.log(err)
       )

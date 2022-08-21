@@ -1,7 +1,7 @@
 
 export interface Zone{
 
-    id?:number;
+    id?:number|null;
     libelle?:string;
     prix?: number;
 }

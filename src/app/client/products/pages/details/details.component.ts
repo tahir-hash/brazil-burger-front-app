@@ -35,12 +35,15 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
    
     let id = this.route.snapshot.paramMap.get('id');
-
+    
     this.service.one$(id).subscribe(data => {
       this.produit = data
       this.produit?.menu.menuTailles.forEach((element:any) => {
           this.quantiteMenu+=element.quantite
       });
+      /* if(this.route.snapshot.paramMap.get('id')=='burger'){
+        this.disabled_attr = false;
+      } */
     })
   }
   activeTab: string = 'search';
@@ -139,11 +142,14 @@ export class DetailsComponent implements OnInit {
       let totalNbr = 0
       let tabB: any[] = data.boisson
       tabB.forEach((boisson) => {
+
         totalNbr += boisson.nbr
+        //valid stock
         if (boisson.nbr > boisson.stock) {
           this.toast.error({ detail: "Error message", summary: "Stock indisponible", position: 'bl', duration: 1000 })
           this.disabled_attr = true
         }
+        //valid quantity
         if (data.quantite < totalNbr) {
           this.toast.error({ detail: "Error message", summary: "Vous avez dépassé le nombre de boisson", position: 'bl', duration: 1000 })
           this.disabled_attr = true
@@ -151,6 +157,7 @@ export class DetailsComponent implements OnInit {
         if (data.quantite > totalNbr) {
            this.disabled_attr = true
         }
+        //all ok
         if(boisson.nbr < boisson.stock && data.quantite == totalNbr && this.quantiteChoix==this.quantiteMenu*this.btnQte ){
             this.disabled_attr = false
         }
