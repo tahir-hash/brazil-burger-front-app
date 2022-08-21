@@ -102,11 +102,11 @@ export class DetailsComponent implements OnInit {
       else {
         this.tab.map(data => {
           if (data.idTaille == event.idTaille) {
+            data.quantite=event.quantite;
             let ObjB = {
               id: event.jus.id,
               nbr: nbr,
               stock: event.jus.stock,
-
             }
             let tabB: any[] = data.boisson
             let FoundB = false
@@ -126,7 +126,6 @@ export class DetailsComponent implements OnInit {
       }
     }
     this.quantiteChoix=0
-  console.log(this.tab)
     this.ShowError(this.tab)
   }
   ShowError(tab: any[]) {  
@@ -136,12 +135,11 @@ export class DetailsComponent implements OnInit {
       })
     });  
     tab.forEach(data => {
-      console.log(this.quantiteChoix)
+      console.log(data)
       let totalNbr = 0
       let tabB: any[] = data.boisson
       tabB.forEach((boisson) => {
         totalNbr += boisson.nbr
-        //console.log("tahir"+""+totalAll)
         if (boisson.nbr > boisson.stock) {
           this.toast.error({ detail: "Error message", summary: "Stock indisponible", position: 'bl', duration: 1000 })
           this.disabled_attr = true
@@ -153,10 +151,9 @@ export class DetailsComponent implements OnInit {
         if (data.quantite > totalNbr) {
            this.disabled_attr = true
         }
-
-         if(boisson.nbr < boisson.stock && data.quantite == totalNbr && this.quantiteChoix==this.quantiteMenu ){
+        if(boisson.nbr < boisson.stock && data.quantite == totalNbr && this.quantiteChoix==this.quantiteMenu*this.btnQte ){
             this.disabled_attr = false
-        } 
+        }
       })
     })
   }

@@ -39,7 +39,6 @@ export class TailleBoissonsComponent implements OnInit {
         stock: stock
       }
     }
-    //alert(object.idTaille)
     this.objetBoissonChange.emit(object)
 
   }
