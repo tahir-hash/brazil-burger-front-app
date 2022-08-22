@@ -17,12 +17,31 @@ export class DeliveryComponent implements OnInit {
   liv:any[]=[]
   myform:any;
   tes:any[]=[]
+  zone:any[]=[]
   teams:any[]=[]
   ngOnInit(): void {
     this.commandeServe.getZoneCmd(36).subscribe(data=>{
      this.orderEnd= data.filter((item:any) => {
       return item.etat === "TERMINEE"
     })
+    })
+    this.commandeServe.getAll().subscribe(data=>{
+      this.tes=data.filter((item:any) => {
+        return item.etat === "TERMINEE"
+      });
+      this.tes.forEach(element=>{
+        this.zone.push(element.zone.id)
+      })
+       
+      const zoneA= [...new Set(this.zone)]
+      zoneA.forEach(element=>{
+        this.commandeServe.getZoneCmd(element).subscribe(data=>{
+          this.teams.push(data.filter((item:any) => {
+            return item.etat === "TERMINEE"
+          }))
+         })
+      });
+      console.log(this.teams)
     })
     //livreur disponible
     this.commandeServe.getAllLiv().subscribe(data=>{

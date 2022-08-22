@@ -8,9 +8,16 @@
         <div class="describe mt-5 d-flex justify-content-around">
             
             <h4>{{details?.description}}</h4>
-            <button routerLink="/client/products/catalogue" [disabled]="disabled_attr"  (click)="addToCart(details)"  data-toggle="tooltip" data-placement="bottom" title="Ajouter au panier">
-                <h3 class="mb-1 mt-1">J'achète</h3>
-            </button>
+            <ng-container *ngIf="details?.type=='burger'">
+                <button routerLink="/client/products/catalogue"  (click)="addToCart(details)"  data-toggle="tooltip" data-placement="bottom" title="Ajouter au panier">
+                    <h3 class="mb-1 mt-1">J'achète</h3>
+                </button>
+            </ng-container>
+            <ng-container *ngIf="details?.type=='menu'">
+                <button routerLink="/client/products/catalogue" [disabled]="disabled_attr"  (click)="addToCart(details)"  data-toggle="tooltip" data-placement="bottom" title="Ajouter au panier">
+                    <h3 class="mb-1 mt-1">J'achète</h3>
+                </button>
+            </ng-container>
         </div>
     </div>
 </div>

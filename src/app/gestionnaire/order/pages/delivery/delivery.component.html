@@ -1,6 +1,6 @@
 <mtm-header-admin></mtm-header-admin>
 <div class="content-wrapper">
-  <ng-container>
+ <!--  <ng-container *ngIf="orderEnd">
     <div class="container mt-5">
       <h1 class="text-center">Les commandes terminées par zone</h1>
       <div class="accordion">
@@ -74,6 +74,87 @@
             </form>
           </div>
         </div>
+      </div>
+    </div>
+  </ng-container> -->
+  <ng-container *ngIf="teams.length==0">
+    <mtm-loader-admin></mtm-loader-admin>
+  </ng-container>
+  <ng-container *ngIf="teams.length!=0">
+    <div class="container mt-5">
+      <h1 class="text-center">Les commandes terminées par zone</h1>
+      <div class="accordion">
+        <ng-container *ngFor="let item of teams">
+          <div class="accordion-item">
+            <h2 class="acc-title" id="accordion-button-1" aria-expanded="false">
+              <span class="accordion-title">Zone1</span>
+              <span class="icon" aria-hidden="true"></span>
+            </h2>
+            <div class="accordion-content">
+              <form [formGroup]="myform" (ngSubmit)="submitData()" >
+                <ng-container>
+                  <div class="d-flex">
+                    <select formControlName="livreur"  class="form-control w-25 mt-3 select" name="livreur" id="">
+                      <option value="" selected disabled>Choisir</option>
+                      <ng-container *ngFor="let item of liv">
+                        <option value="{{ item.id }}">
+                          {{ item.prenom|uppercase }}{{ " " }}{{ item.nom|uppercase }}
+                        </option>
+                      </ng-container>
+                    </select>
+                    <button
+                        [disabled]="myform.invalid"
+                      class="button mt-3"
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Submit"
+                    >
+                      <h5 class="mt-1">Valider</h5>
+                    </button>
+                  </div>
+                </ng-container>
+                <ng-container>
+                  <table class="table table-striped mb-5">
+                   <thead>
+                     <tr>
+                       <th scope="col">#</th>
+                       <th scope="col">id</th>
+                       <th scope="col">Date</th>
+                       <th scope="col">Total</th>
+                       <th scope="col">Choisir</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <ng-container *ngFor="let zone of item let i = index" >
+                       <tr>
+                         <td style="color: #d4401f">
+                           <strong>{{zone.numCmd}}</strong>
+                         </td>
+                         <td>{{zone.etat}}</td>
+                         <td>{{ zone.dateCmd | date: "medium" }}</td>
+                         <td>{{ zone.montant }}</td>
+                         <td>
+                           <div  class="form-check">
+                             <input
+                             formArrayName="commandes"
+                               class="form-check-input"
+                               type="checkbox"
+                               value="{{zone.id}}"
+                               id="flexCheckDefault"
+                               (change)="onChange(zone,$event,i)"
+                             />
+                           </div>
+                         </td>
+                       </tr>
+                     </ng-container>
+                    
+                   </tbody>
+                   </table>
+                 </ng-container> 
+              </form>
+            </div>
+          </div>
+        </ng-container>
       </div>
     </div>
   </ng-container>

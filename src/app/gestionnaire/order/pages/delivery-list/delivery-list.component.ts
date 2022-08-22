@@ -20,7 +20,7 @@ export class DeliveryListComponent implements OnInit {
   zones: any[] = []
   ngOnInit(): void {
     this.livraisonServ.allDelivery().subscribe(data=>{
-      console.log(data)
+     // console.log(data)
       this.allLiv=data
     },err=>{
       console.log(err)
