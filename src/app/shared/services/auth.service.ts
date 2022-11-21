@@ -4,13 +4,15 @@ import { catchError, tap, throwError } from 'rxjs';
 import { Login, Token } from '../models/Auth';
 import { User } from '../models/User';
 import { TokenService } from './token.service';
-
+import { environment } from 'src/environments/environment';
+const apiUrl=environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  private urlLogin='https://tahirbrazilburger.herokuapp.com/api/login_check'
-  private urlRegister='https://tahirbrazilburger.herokuapp.com/api/register'
+  private urlLogin=`${apiUrl}/login_check`;
+  private urlRegister=`${apiUrl}/register`;
 
   
 

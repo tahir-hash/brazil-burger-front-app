@@ -4,14 +4,15 @@ import { map, Observable } from 'rxjs';
 import { Catalogue } from '../models/catalogue';
 import { Produit } from '../models/produit';
 import { TokenService } from './token.service';
-
+import { environment } from 'src/environments/environment';
+const apiUrl=environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitService {
-  private url:string = "https://tahirbrazilburger.herokuapp.com/api/catalogues";
-  private urlDetails:string = "https://tahirbrazilburger.herokuapp.com/api/details_produits";
-  private urlMenu:string= "https://tahirbrazilburger.herokuapp.com/api/menus"
+  private url:string = `${apiUrl}/catalogues`;
+  private urlDetails:string = `${apiUrl}/details_produits`;
+  private urlMenu:string= `${apiUrl}/menus`;
   
 
   constructor(private http:HttpClient, private token:TokenService) { }

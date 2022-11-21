@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { TokenService } from './services/token.service';
+import { environment } from 'src/environments/environment';
+const apiUrl=environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { TokenService } from './services/token.service';
 export class LivraisonService {
 
   constructor(private http: HttpClient, private token: TokenService) { }
-  private urlLiv= "https://tahirbrazilburger.herokuapp.com/api/livraisons"
+  private urlLiv= `${apiUrl}/livraisons`;
 
   addDelivery(livraison:any){
     const headersOptions = {

@@ -4,17 +4,18 @@ import { NgToastService } from 'ng-angular-popup';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Cart } from '../models/cart';
 import { TokenService } from './token.service';
-
+import { environment } from 'src/environments/environment';
+const apiUrl=environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
 export class CommandeService {
 
    idClient= Number(localStorage.getItem('userId'));
-  private urlCmd = "https://tahirbrazilburger.herokuapp.com/api/commandes";
-  private urlCmdOwn = `https://tahirbrazilburger.herokuapp.com/api/clients/${this.idClient}/commandes`;
-  private urlLIvreurs = "https://tahirbrazilburger.herokuapp.com/api/livreurs";
-  private urlzone = "https://tahirbrazilburger.herokuapp.com/api/zones";
+  private urlCmd = `${apiUrl}/commandes`;
+  private urlCmdOwn = `${apiUrl}/clients/${this.idClient}/commandes`;
+  private urlLIvreurs = `${apiUrl}/livreurs`;
+  private urlzone = `${apiUrl}/zones`;
 
 
   constructor(private toast: NgToastService, private http: HttpClient, private token: TokenService) { }

@@ -6,7 +6,8 @@ import { Cart } from '../models/cart';
 import { MenuCommande } from '../models/menu-commande';
 import { PortionFriteCommande } from '../models/portion-frite-commande';
 import { Produit } from '../models/produit';
-
+import { environment } from 'src/environments/environment';
+const apiUrl=environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
